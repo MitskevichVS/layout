@@ -1,0 +1,105 @@
+@import './assets/fonts/stylesheet.css';
+
+.header {
+    width: 100%;
+    background-color: #eff0f2;
+}
+
+.header__container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-bottom: 3.3%;
+    position: relative;
+}
+
+.header__content-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo {
+    margin-top: 5.5%;
+}
+
+.header__menu {
+    width: 30px;
+    height: 30px;
+    background: url(./assets/img/menu_button.png) no-repeat;
+    margin-top: 7%;
+}
+
+.header__menu:hover {
+    cursor: pointer;
+}
+
+.header__heading {
+    margin-top: 17%;
+    line-height: 1.3em;
+    color: #505050;
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    font-size: 2.8em;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 3px 6px 5px rgba(131,132,132,0.6);
+    letter-spacing: 1.6px;
+}
+
+.header__heading span {
+    background-color: #b2f2ee;
+}
+
+.header__button {
+    width: 232px;
+    height: 53px;
+    display: block;
+    box-sizing: border-box;
+    margin: 12% auto;
+    margin-bottom: 10%;
+    text-transform: uppercase;
+    font-family: Montserrat, sans-serif;
+    font-size: 1em;
+    letter-spacing: 3.5px;
+    border: 2px solid #777879;
+    background-color: #eff0f2;
+    color: #606061;
+}
+
+.header__content-bottom {
+    position: absolute;
+    bottom: 16.7%;
+    right: 8.5%;
+}
+
+.header__image {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    background: url(./assets/img/stand.png) no-repeat;
+}
+
+.header__image::before {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: url(./assets/img/Cup_shadow.png) no-repeat 12% 25%;
+    z-index: 5;
+    opacity: 0.5;
+}
+
+.header__image::after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    filter: hue-rotate(120deg);
+    background: url(./assets/img/cup.png) no-repeat 28% 47%;
+}
