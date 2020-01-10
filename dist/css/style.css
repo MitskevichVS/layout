@@ -181,8 +181,10 @@ body {
 }
 
 .text__header {
-    margin: 5.8% 0% 0% 0%;
-    padding: 0% 0% 0% 10%;
+    margin: 0;
+    padding: 0;
+    margin-top: 5.8%;
+    padding-left: 10%;
     text-transform: uppercase;
     font-family: Merriweather, sans-serif;
     font-size: 1.18rem;
@@ -191,15 +193,18 @@ body {
 }
 
 .text__header:first-child {
-    margin: 3% 0% 0% 0%;
+    margin: 0;
+    margin-top: 3%;
     font-size: 1.3rem;
     letter-spacing: 0.055rem;
 }
 
 .text__content {
     width: 85%;
-    margin: 3.5% 0% 0% 0%;
-    padding: 0% 0% 0% 10%;
+    margin: 0;
+    margin-top: 3.5%;
+    padding: 0;
+    padding-left: 10%;
     font-family: Raleway, sans-serif;
     font-weight: 400;
     letter-spacing: 0.05rem;
@@ -209,15 +214,17 @@ body {
 }
 
 .text__content:nth-child(odd) {
-    margin: 4.7% 0% 0% 0%;
+    margin: 0;
+    margin-top: 4.7%;
 }
 
 .text__content:nth-child(5n) {
-    margin: 2.7% 0% 0% 0%;
+    margin: 0;
+    margin-top: 2.7%;
 }
 
 .text__content:nth-child(6n) {
-    margin: 0% 0% 0% 0%;
+    margin: 0;
 }
 
 .slider__item {
