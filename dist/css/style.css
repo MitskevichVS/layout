@@ -103,3 +103,39 @@
     filter: hue-rotate(120deg);
     background: url(./assets/img/cup.png) no-repeat 28% 47%;
 }
+
+.main__container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.main__section-about {
+    background-color: #f8fafa;
+}
+
+.section__header {
+    padding-top: 11%;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    font-size: 2.4em;
+    font-stretch: semi-expanded;
+    padding-left: 1.5%;
+}
+
+.section__subheader {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Merriweather, sans-serif;
+    font-size: 1.25em;
+    margin-top: 0.7%;
+    color: #a6a7a7;
+}
+
+.section__slideritem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
