@@ -1,5 +1,10 @@
 @import './assets/fonts/stylesheet.css';
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .header {
     width: 100%;
     background-color: #eff0f2;
