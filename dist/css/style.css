@@ -107,14 +107,14 @@ body {
     background: url(./assets/img/cup.png) no-repeat 28% 47%;
 }
 
-.main__container {
+.main__wrapper {
     max-width: 1140px;
     margin: 0 auto;
 }
 
             /* FIRST SECTION */
 
-.main__section-about {
+._about {
     background-color: #f8fafa;
 }
 
@@ -141,13 +141,13 @@ body {
     color: #a6a7a7;
 }
 
-.section__content-slider {
+.content__slider {
     margin: 0;
     padding: 0;
     position: relative;
 }
 
-.section__content-slider::after {
+.content__slider::after {
     content: "";
     position: absolute;
     display: block;
@@ -160,7 +160,7 @@ body {
     opacity: 0.1;
 }
 
-.section__content-slider input {
+.content__slider input {
     display: none;
 }
 
@@ -242,7 +242,7 @@ body {
     margin-left: 4px;
 }
 
-.section__content-slider label:hover,
+.content__slider label:hover,
 .slider__radioinput-first:checked~.controls label:nth-of-type(1),
 .slider__radioinput-second:checked~.controls label:nth-of-type(2),
 .slider__radioinput-third:checked~.controls label:nth-of-type(3),
