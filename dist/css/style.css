@@ -201,10 +201,8 @@ body {
 
 .text__content {
     width: 85%;
-    margin: 0;
-    margin-top: 3.5%;
-    padding: 0;
-    padding-left: 10%;
+    margin: 3.5% 0 0 0;
+    padding: 0 0 0 10%;
     font-family: Raleway, sans-serif;
     font-weight: 400;
     letter-spacing: 0.05rem;
@@ -214,13 +212,11 @@ body {
 }
 
 .text__content:nth-child(odd) {
-    margin: 0;
-    margin-top: 4.7%;
+    margin: 4.7% 0 0 0;
 }
 
 .text__content:nth-child(5n) {
-    margin: 0;
-    margin-top: 2.7%;
+    margin: 2.7% 0 0 0;
 }
 
 .text__content:nth-child(6n) {
