@@ -254,17 +254,17 @@ body {
 }
 
 .section__content-slider label:hover,
-#one:checked~.controls label:nth-of-type(1),
-#two:checked~.controls label:nth-of-type(2),
-#three:checked~.controls label:nth-of-type(3),
-#four:checked~.controls label:nth-of-type(4){
+.slider__radioinput-first:checked~.controls label:nth-of-type(1),
+.slider__radioinput-second:checked~.controls label:nth-of-type(2),
+.slider__radioinput-third:checked~.controls label:nth-of-type(3),
+.slider__radioinput-fourth:checked~.controls label:nth-of-type(4){
     background-color: #71f6eb;
     cursor: pointer;
 }
 
-#one:checked~.slide1,
-#two:checked~.slide2,
-#three:checked~.slide3,
-#four:checked~.slide4 {
+.slider__radioinput-first:checked~.slide1,
+.slider__radioinput-second:checked~.slide2,
+.slider__radioinput-third:checked~.slide3,
+.slider__radioinput-fourth:checked~.slide4 {
 	opacity: 1;
 }
