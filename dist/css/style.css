@@ -6,12 +6,10 @@ body {
 }
 
 .header {
-    width: 100%;
     background-color: #eff0f2;
 }
 
 .header__container {
-    width: 100%;
     max-width: 1140px;
     margin: 0 auto;
     padding-bottom: 3.3%;
@@ -110,7 +108,6 @@ body {
 }
 
 .main__container {
-    width: 100%;
     max-width: 1140px;
     margin: 0 auto;
     overflow: hidden;
