@@ -4,6 +4,6 @@ window.onload = () => {
     const slidersArray = Array.from(document.querySelectorAll('.section__content-slider'));
     slidersArray.forEach((slider) => {
         const sliderClass = new Slider(slider);
-        sliderClass.addSliderEventListeners();
+        sliderClass.init();
     });
 };
