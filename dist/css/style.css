@@ -213,6 +213,15 @@ body {
     margin: 0;
 }
 
+.slider__content-list {
+    margin: 0;
+    padding: 0;
+}
+
+.slider__content-item {
+    list-style-type: none;
+}
+
 .slider__item {
     position: absolute;
     opacity: 0;
@@ -224,27 +233,29 @@ body {
     transition: opacity 0.25s ease-in;
 }
 
-.slider__controls {
+.slider__controls-list {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin: 544px 11% 114px 0;
+    padding: 0;
 }
 
-.controls__control {
+.controls__control-item {
     width: 10px;
     height: 10px;
     background-color: #d0d0d0;
     border-radius: 2px;
     margin-left: 4px;
+    list-style-type: none;
 }
 
-.controls__control:hover {
+.controls__control-item:hover {
     background-color: #71f6eb;
     cursor: pointer;
 }
 
-.controls__control._selected-control {
+.controls__control-item._selected-control {
     background-color: #71f6eb;
 }
 
