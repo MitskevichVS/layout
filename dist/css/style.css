@@ -107,14 +107,14 @@ body {
     background: url(./assets/img/cup.png) no-repeat 28% 47%;
 }
 
-.main__wrapper {
+.main__section-wrapper {
     max-width: 1140px;
     margin: 0 auto;
 }
 
             /* FIRST SECTION */
 
-._about {
+.main__section._grey {
     background-color: #f8fafa;
 }
 
@@ -141,13 +141,13 @@ body {
     color: #a6a7a7;
 }
 
-.content__slider {
+.section__content-slider {
     margin: 0;
     padding: 0;
     position: relative;
 }
 
-.content__slider::after {
+.section__content-slider::after {
     content: "";
     position: absolute;
     display: block;
@@ -158,10 +158,6 @@ body {
     background-color: #3e3f3f;
     z-index: 1;
     opacity: 0.1;
-}
-
-.content__slider input {
-    display: none;
 }
 
 .slider__list {
@@ -177,19 +173,20 @@ body {
 }
 
 .text__header {
-    margin: 30px 0 0 0;
+    margin: 18px 0 0 0;
     padding: 0 0 0 10%;
     text-transform: uppercase;
     font-family: Merriweather, sans-serif;
-    font-size: 1.18rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #3e3f3f;
+    letter-spacing: 0.055rem;
 }
 
-.text__header:first-child {
-    margin: 18px 0 0 0;
-    font-size: 1.3rem;
-    letter-spacing: 0.055rem;
+.text__header._subheader {
+    margin: 30px 0 0 0;
+    font-size: 1.18rem;
+    letter-spacing: 0;
 }
 
 .text__content {

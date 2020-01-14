@@ -1,7 +1,7 @@
 export default class App {
     constructor() {
         this.firstSliderControlsNode = document.querySelector('.slider__controls');;
-        this.firstSliderContentNode = document.querySelector('.content__slider');;
+        this.firstSliderContentNode = document.querySelector('.section__content-slider');;
         this.firstSliderControls = null;
         this.firstSliderContent = null;
     }
@@ -15,10 +15,10 @@ export default class App {
 
     addSliderEventListeners() {
         this.firstSliderControlsNode.addEventListener('click', (event) => {
-            if (event.target.classList.contains('controls')) {
+            if (!event.target.classList.contains('controls__control')) {
                 return;
             }
-            
+
             const selectedIndex = this.firstSliderControls.indexOf(event.target);
 
             this.firstSliderControls.forEach((item) => {
