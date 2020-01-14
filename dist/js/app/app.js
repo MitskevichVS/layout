@@ -15,17 +15,17 @@ export default class App {
 
     addSliderEventListeners() {
         this.firstSliderControlsNode.addEventListener('click', (event) => {
-            const target = event.target;
-            if (target.classList.contains('controls')){
+            if (event.target.classList.contains('controls')) {
                 return;
             }
-            const selectedIndex = this.firstSliderControls.indexOf(target);
+            
+            const selectedIndex = this.firstSliderControls.indexOf(event.target);
 
             this.firstSliderControls.forEach((item) => {
                 item.classList.remove('selected__control');
             });
 
-            target.classList.add('selected__control');
+            event.target.classList.add('selected__control');
 
             this.firstSliderContent.forEach((item, index) => {
                 item.classList.remove('selected__image');
