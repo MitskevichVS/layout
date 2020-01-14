@@ -22,7 +22,7 @@ export default class Slider {
     }
 }
 
-function addSliderEventListeners() {
+const addSliderEventListeners = function() {
     this.sliderControlsNode.addEventListener('click', (event) => {
         const selectedControl = checkTargetClassInPath(event.path);
 
