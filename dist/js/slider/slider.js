@@ -1,3 +1,14 @@
+const checkTargetClassInPath = (pathPseudoArray) => {
+    let requiredNode = false;
+    const pathArray = Array.from(pathPseudoArray);
+    pathArray.forEach((node) => {
+        if (node.classList !== undefined && node.classList.contains('controls__control-item')){
+            requiredNode = node;
+        }
+    });
+    return requiredNode;
+}
+
 export default class Slider {
     constructor(element) {
         this.sliderControlsNode = element.children[0];
@@ -13,16 +24,18 @@ export default class Slider {
 
 function addSliderEventListeners() {
     this.sliderControlsNode.addEventListener('click', (event) => {
-        if (!event.target.classList.contains('controls__control-item')) {
+        const selectedControl = checkTargetClassInPath(event.path);
+
+        if (!checkTargetClassInPath(event.path) || event.target.classList.contains('_selected-control')) {
             return;
         }
 
-        const selectedIndex = this.sliderControls.indexOf(event.target);
+        const selectedIndex = this.sliderControls.indexOf(selectedControl);
         this.sliderControls.forEach((item) => {
             item.classList.remove('_selected-control');
         });
 
-        event.target.classList.add('_selected-control');
+        selectedControl.classList.add('_selected-control');
 
         this.sliderContent.forEach((item, index) => {
             item.children[0].classList.remove('_selected-item');
