@@ -1,26 +1,26 @@
 export default class Slider {
     constructor(element) {
-        this.firstSliderControlsNode = element.children[0];
-        this.firstSliderContentNode = element;
-        this.firstSliderControls = Array.from(this.firstSliderControlsNode.children);
-        this.firstSliderContent = Array.from(this.firstSliderContentNode.children);
+        this.sliderControlsNode = element.children[0];
+        this.sliderContentNode = element;
+        this.sliderControls = Array.from(this.sliderControlsNode.children);
+        this.sliderContent = Array.from(this.sliderContentNode.children);
     }
 
     addSliderEventListeners() {
-        this.firstSliderControlsNode.addEventListener('click', (event) => {
+        this.sliderControlsNode.addEventListener('click', (event) => {
             if (!event.target.classList.contains('controls__control')) {
                 return;
             }
 
-            const selectedIndex = this.firstSliderControls.indexOf(event.target);
+            const selectedIndex = this.sliderControls.indexOf(event.target);
 
-            this.firstSliderControls.forEach((item) => {
+            this.sliderControls.forEach((item) => {
                 item.classList.remove('selected__control');
             });
 
             event.target.classList.add('selected__control');
 
-            this.firstSliderContent.forEach((item, index) => {
+            this.sliderContent.forEach((item, index) => {
                 item.classList.remove('selected__image');
                 if (index === selectedIndex + 1) {
                     item.classList.add('selected__image');
