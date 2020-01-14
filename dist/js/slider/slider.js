@@ -15,15 +15,15 @@ export default class Slider {
             const selectedIndex = this.sliderControls.indexOf(event.target);
 
             this.sliderControls.forEach((item) => {
-                item.classList.remove('selected__control');
+                item.classList.remove('_selected-control');
             });
 
-            event.target.classList.add('selected__control');
+            event.target.classList.add('_selected-control');
 
             this.sliderContent.forEach((item, index) => {
-                item.classList.remove('selected__image');
+                item.classList.remove('_selected-item');
                 if (index === selectedIndex + 1) {
-                    item.classList.add('selected__image');
+                    item.classList.add('_selected-item');
                 }
             });
         });

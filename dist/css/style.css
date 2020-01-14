@@ -244,10 +244,10 @@ body {
     cursor: pointer;
 }
 
-.selected__control {
+.controls__control._selected-control {
     background-color: #71f6eb;
 }
 
-.selected__image {
+.slider__item._selected-item {
     opacity: 1;
 }
