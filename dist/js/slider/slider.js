@@ -24,9 +24,10 @@ export default class Slider {
 
 const addSliderEventListeners = function() {
     this.sliderControlsNode.addEventListener('click', (event) => {
-        const selectedControl = checkTargetClassInPath(event.path);
+        const eventPath = event.path || (event.composedPath && event.composedPath());
+        const selectedControl = checkTargetClassInPath(eventPath);
 
-        if (!checkTargetClassInPath(event.path) || event.target.classList.contains('_selected-control')) {
+        if (!selectedControl || event.target.classList.contains('_selected-control')) {
             return;
         }
 
