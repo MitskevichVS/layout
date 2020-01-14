@@ -1,16 +1,9 @@
-export default class App {
-    constructor() {
-        this.firstSliderControlsNode = document.querySelector('.slider__controls');;
-        this.firstSliderContentNode = document.querySelector('.section__content-slider');;
-        this.firstSliderControls = null;
-        this.firstSliderContent = null;
-    }
-
-    start() {
-        this.firstSliderControls = Array.prototype.slice.call(this.firstSliderControlsNode.children);
-        this.firstSliderContent = Array.prototype.slice.call(this.firstSliderContentNode.children);
-
-        this.addSliderEventListeners();
+export default class Slider {
+    constructor(element) {
+        this.firstSliderControlsNode = element.children[0];
+        this.firstSliderContentNode = element;
+        this.firstSliderControls = Array.from(this.firstSliderControlsNode.children);
+        this.firstSliderContent = Array.from(this.firstSliderContentNode.children);
     }
 
     addSliderEventListeners() {
