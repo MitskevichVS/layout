@@ -262,3 +262,39 @@ body {
 .slider__item._selected-item {
     opacity: 1;
 }
+
+            /* SECOND SECTION */
+
+.main__section._white {
+    background-color: #ffffff;
+}
+
+.main__section._white .section__header {
+    padding-left: 3.7%;
+    letter-spacing: 0.08rem;
+}
+
+
+.main__section._white .section__subheader {
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+}
+
+.section__gallery-list {
+    margin: 116px 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.section__gallery-item {
+    list-style-type: none;
+    height: 360px;
+    width: 32.5%;
+    overflow: hidden;
+    margin-bottom: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
