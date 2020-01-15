@@ -141,17 +141,6 @@ body {
     color: #a6a7a7;
 }
 
-
-.section__header._white-section {
-    padding-left: 3.7%;
-    letter-spacing: 0.08rem;
-}
-
-.section__subheader._white-section {
-    font-size: 1.1rem;
-    letter-spacing: 0.05rem;
-}
-
 .section__content-slider {
     margin: 0;
     padding: 0;
@@ -275,6 +264,21 @@ body {
 }
 
             /* SECOND SECTION */
+
+.main__section._white {
+    background-color: #ffffff;
+}
+
+.main__section._white .section__header {
+    padding-left: 3.7%;
+    letter-spacing: 0.08rem;
+}
+
+
+.main__section._white .section__subheader {
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+}
 
 .section__gallery-list {
     margin: 116px 0;
