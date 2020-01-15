@@ -290,32 +290,4 @@ body {
     width: 32.5%;
     overflow: hidden;
     margin-bottom: 1%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 50% 50%;
-}
-
-.section__gallery-item:first-child {
-    background-image: url(./assets/img/gal_1.jpg);
-}
-
-.section__gallery-item:nth-child(2n+2) {
-    background-image: url(./assets/img/gal_2.jpg);
-}
-
-.section__gallery-item:nth-child(3n+3) {
-    background-image: url(./assets/img/gal_3.jpg);
-}
-
-.section__gallery-item:nth-child(4n+4) {
-    background-image: url(./assets/img/gal_4.jpg);
-}
-
-.section__gallery-item:nth-child(5n+5) {
-    background-image: url(./assets/img/gal_5.jpg);
-    background-position: 50% 0%;
-}
-
-.section__gallery-item:nth-child(6n+6) {
-    background-image: url(./assets/img/gal_6.jpg);
 }
