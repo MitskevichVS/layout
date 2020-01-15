@@ -1,11 +1,12 @@
-const checkTargetClassInPath = (pathPseudoArray) => {
+const checkTargetClassInPath = (pathPseudoArray, eventEl) => {
     let requiredNode = false;
     const pathArray = Array.from(pathPseudoArray);
-    pathArray.forEach((node) => {
-        if (node.classList !== undefined && node.classList.contains('controls__control-item')){
-            requiredNode = node;
+    for (let itemIndex = 0; itemIndex < pathArray.length; itemIndex += 1) {
+        if (pathArray[itemIndex].classList !== undefined && pathArray[itemIndex].classList.contains('controls__control-item') && pathArray[itemIndex] !== eventEl){
+            requiredNode = pathArray[itemIndex];
+            break;
         }
-    });
+    }
     return requiredNode;
 }
 

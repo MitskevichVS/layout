@@ -3,7 +3,7 @@ import checkTargetClassInPath from './sliderPathChecker.js';
 const addSliderEventListeners = function() {
     this.sliderControlsNode.addEventListener('click', (event) => {
         const eventPath = event.path || (event.composedPath && event.composedPath());
-        const selectedControl = checkTargetClassInPath(eventPath);
+        const selectedControl = checkTargetClassInPath(eventPath, event.currentTarget);
         
         if (!selectedControl || event.target.classList.contains('_selected-control')) {
             return;
