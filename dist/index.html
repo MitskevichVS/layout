@@ -24,34 +24,32 @@
         </div>
     </header>
     <main class="main">
-        <section class="main__section-about">
-            <div class="main__container">
+        <section class="main__section _grey">
+            <div class="main__section-wrapper">
                 <h2 class="section__header">about us</h2>
                 <p class="section__subheader">Lorem ipsum dolor sit amet event landing template</p>
                 <div class="section__content">
-                    <div class="section__content-slider slider">
-                        <input type="radio" id="one" class="slider__radioinput-first" name="slide" checked>
-                        <input type="radio" id="two" class="slider__radioinput-second" name="slide">
-                        <input type="radio" id="three" class="slider__radioinput-third" name="slide">
-                        <input type="radio" id="four" class="slider__radioinput-fourth" name="slide">
-                        <div class="controls">
-                            <label for="one"></label>
-                            <label for="two"></label>
-                            <label for="three"></label>
-                            <label for="four"></label>
-                        </div> 
-                        <img src="./css/assets/img/about.jpg" alt="workspace" class="slider__item slide1">
-                        <img src="./css/assets/img/about1.jpg" alt="workspace" class="slider__item slide2">
-                        <img src="./css/assets/img/about2.jpg" alt="workspace" class="slider__item slide3">
-                        <img src="./css/assets/img/about3.jpg" alt="workspace" class="slider__item slide4">
+                    <div class="section__content-slider">
+                        <ul class="slider__controls-list">
+                            <li class="controls__control-item _selected-control"></li>
+                            <li class="controls__control-item"></li>
+                            <li class="controls__control-item"></li>
+                            <li class="controls__control-item"></li>
+                        </ul>
+                        <ul class="slider__content-list">
+                            <li class="slider__content-item"><img src="./css/assets/img/about.jpg" alt="workspace" class="slider__item _selected-item"></li>
+                            <li class="slider__content-item"><img src="./css/assets/img/about1.jpg" alt="workspace" class="slider__item"></li>
+                            <li class="slider__content-item"><img src="./css/assets/img/about2.jpg" alt="workspace" class="slider__item"></li>
+                            <li class="slider__content-item"><img src="./css/assets/img/about3.jpg" alt="workspace" class="slider__item"></li>
+                        </ul>
                     </div>
-                    <div class="section__content-text text">
+                    <div class="section__content-text">
                         <h3 class="text__header">We Actually Do amazing works</h3>
                         <p class="text__content">A visual approach is an approach to a runway at an airport conducted under instrument flight rules. 
                             The pilot must at all times have either the airport or the preceding aircraft in approach correct sight. conducted under 
                             instrument flight rules. The pilot must at all times.</p>
                         <p class="text__content">Preceding aircraft in approach correct sight. conducted under instrument flight rules.</p>
-                        <h4 class="text__header">why we are the great?</h4>
+                        <h4 class="text__header _subheader">why we are the great?</h4>
                         <p class="text__content">A visual approach is an approach to a runway at an airport conducted under instrument flight rules.</p>
                         <p class="text__content">The preceding aircraft in approach correct sight.</p>
                     </div>
@@ -81,5 +79,6 @@
     <footer class="footer">
         <div class="footer__container"></div>
     </footer>
+    <script src="./js/index.js" type="module"></script>
 </body>
 </html>
