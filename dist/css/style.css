@@ -389,10 +389,10 @@ body {
     text-transform: uppercase;
     box-sizing: border-box;
     border-bottom: 1px solid transparent;
-    -webkit-transition : border 0.25 ease-out;
-    -moz-transition : border 0.25 ease-out;
-    -o-transition : border 0.25 ease-out;
-    transition : border 0.25 ease-out;
+    -webkit-transition: border-color 0.25s ease;
+    -moz-transition: border-color 0.25s ease;
+    -o-transition: border-color 0.25s ease;
+    transition: border-color 0.25s ease;
 }
 
 .item__text-button:hover {
@@ -503,9 +503,11 @@ body {
     border: 0;
     background-color: transparent;
     outline: none;
+    transition: background-color 0.25s ease;
 }
 
 .item__info-button:hover {
+    background-color: #00ffe9;
     cursor: pointer;
 }
 
