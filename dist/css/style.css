@@ -281,8 +281,8 @@ body {
 }
 
 .section__gallery-list {
-    margin: 116px 0;
-    padding: 0;
+    margin: 0;
+    padding: 120px 0 112px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
