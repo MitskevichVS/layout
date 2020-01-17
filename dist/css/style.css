@@ -376,6 +376,7 @@ body {
 
 .item__text-button {
     margin-left: 14%;
+    padding: 0;
     position: absolute;
     bottom: 56px;
     font-family: Raleway, sans-serif;
@@ -400,9 +401,11 @@ body {
 }
 
 .button__arrow {
-    width: 20px;
+    width: 26px;
     height: 2px;
-    margin: 4% 0 4% 10px;
+    margin-left: 10px;
+    margin-bottom: 9px;
+    -webkit-margin-after: 8px;
     background-color: #b7b7b7;
     display: inline-block;
 }
@@ -410,25 +413,29 @@ body {
 .button__arrow:before {
     content: "";
     display: inline-block;
-    width: 10px;
+    width: 12px;
     height: 2px;
     background-color: #b7b7b7;
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
     position: absolute;
-    top: 14px;
-    right: 6px;
+    top: 13px;
+    right: 0px;
 }
 
 .button__arrow:after {
     content: "";
     display: inline-block;
-    width: 10px;
+    width: 12px;
     height: 2px;
     background-color: #b7b7b7;
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
     position: absolute;
-    top: 7px;
-    right: 6px;
+    top: 3px;
+    right: 0px;
 }
 
 .item__info-wrapper {
