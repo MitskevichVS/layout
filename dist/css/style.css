@@ -296,6 +296,10 @@ body {
     justify-content: center;
 }
 
+.section__gallery-item img {
+    height: 100%;
+}
+
 .section__gallery-item._square-similar {
     height: 360px;
     width: 32.5%;
