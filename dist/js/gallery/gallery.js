@@ -6,10 +6,11 @@ export default class Gallery {
     }
 
     init() {
-        this.addGalleryEventListener();
+        this.addClickEventListener();
+        this.addTransitionEventlistener();
     }
 
-    addGalleryEventListener() {
+    addClickEventListener() {
         this.container.addEventListener('click', (event) => {
             let targetElParentContainer;
             const eventPath = event.path || (event.composedPath && event.composedPath());
@@ -28,10 +29,23 @@ export default class Gallery {
             const targetElMessage = targetElParentContainer.querySelector('.item__info-wrapper');
 
             if (pressedElement.classList.contains('item__text-button')) {
-                targetElMessage.classList.remove('_transparent', '_hidden');
+                targetElMessage.classList.remove('_hidden');
+                targetElMessage.classList.remove('_transparent');
             } else if (pressedElement.classList.contains('item__info-button')) {
-                targetElMessage.classList.add('_transparent', '_hidden');
+                targetElMessage.classList.add('_transparent');
+                // targetElMessage.classList.add('_hidden');
             }
         });
+    }
+
+    addTransitionEventlistener() {
+        this.container.addEventListener('transitionend', (event) => {
+
+            if (event.propertyName !== 'opacity') {
+                return;
+            }
+
+            event.target.classList.add('_hidden');
+        }); 
     }
 }
