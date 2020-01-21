@@ -12,6 +12,7 @@ body {
 .header__container {
     max-width: 1140px;
     margin: 0 auto;
+    padding-top: 1px;
     padding-bottom: 3.3%;
     position: relative;
 }
@@ -19,17 +20,29 @@ body {
 .header__content-top {
     display: flex;
     justify-content: space-between;
+    margin-top: 62px;
+    background-color: #eff0f2;
+}
+
+.header__content-top._stick {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 10;
+    justify-content: space-around;
 }
 
 .header__logo {
-    margin-top: 5.5%;
+    margin: 5px 0;
 }
 
 .header__menu {
     width: 30px;
     height: 30px;
     background: url(./assets/img/menu_button.png) no-repeat;
-    margin-top: 7%;
+    margin-top: 16px;
 }
 
 .header__menu:hover {
