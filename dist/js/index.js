@@ -5,10 +5,11 @@ import HeaderController from './header/headerController.js';
 window.onload = () => {
     const slidersArray = Array.from(document.querySelectorAll('.section__content-slider'));
     const serviceGalleryElement = document.querySelectorAll('.section__gallery-list')[1];
-    const headerContainer = document.querySelector('.header__content-top');
+    const headerMenuContainer = document.querySelector('.header__content-top');
+    const headerHeading = document.querySelector('.header__heading');
 
     const serviceGalleryClass = new Gallery(serviceGalleryElement);
-    const headerClass = new HeaderController(headerContainer);
+    const headerClass = new HeaderController(headerMenuContainer, headerHeading);
     
     slidersArray.forEach((slider) => {
         const sliderClass = new Slider(slider);

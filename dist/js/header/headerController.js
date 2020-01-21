@@ -1,6 +1,7 @@
 export default class HeaderController {
-    constructor(headerContainer) {
-        this.headerContainer = headerContainer;
+    constructor(headerMenuContainer, headerHeading) {
+        this.headerMenuContainer = headerMenuContainer;
+        this.headerHeading = headerHeading;
     }
 
     init() {
@@ -10,9 +11,11 @@ export default class HeaderController {
     scrollListener() {
         document.addEventListener('scroll', () => {
             if (pageYOffset >= 64) {
-                this.headerContainer.classList.add('_stick');
+                this.headerMenuContainer.classList.add('_stick');
+                this.headerHeading.classList.add('_indented');
             } else {
-                this.headerContainer.classList.remove('_stick');
+                this.headerMenuContainer.classList.remove('_stick');
+                this.headerHeading.classList.remove('_indented');
             }
         });
     }
