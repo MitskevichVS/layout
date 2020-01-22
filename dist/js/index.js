@@ -19,4 +19,8 @@ window.onload = () => {
     serviceGalleryClass.init();
 
     headerClass.init();
+
+    if (pageYOffset >= 64){
+        headerClass.scrollEvent();
+    }
 };
