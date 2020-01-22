@@ -6,6 +6,7 @@ export default class HeaderController {
 
     init() {
         this.pageScrollListener();
+        this.headerMenuButtonEventListener();
     }
 
     pageScrollListener() {
@@ -20,5 +21,13 @@ export default class HeaderController {
             this.headerMenuContainer.classList.remove('_stick');
             this.headerHeading.classList.remove('_indented');
         }
+    }
+
+    headerMenuButtonEventListener() {
+        const button = document.querySelector('.header__menu-button');
+        button.addEventListener('click', () => {
+            button.classList.toggle('_active');
+            button.classList.toggle('_not-active');
+        })
     }
 }

@@ -23,6 +23,7 @@ body {
 }
 
 .header__wrapper-top {
+    position: relative;
     max-width: 1140px;
     margin: 0 auto;
     display: flex;
@@ -40,19 +41,182 @@ body {
 
 .header__logo {
     margin: 5px 0;
+    height: 46px;
+    width: 113px;
 }
 
-.header__menu {
-    width: 30px;
-    height: 30px;
-    background: url(./assets/img/menu_button.png) no-repeat;
-    margin-top: 16px;
+.header__menu-button {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eff0f2;
+    outline: none;
 }
 
-.header__menu:hover {
+.header__menu-button:hover {
     cursor: pointer;
 }
 
+.button__icon {
+    height: 4px;
+    width: 30px;
+    background-color: #606061;
+    border-radius: 2px;
+    opacity: 1;
+}
+
+.button__icon:before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    background-color: #606061;
+    border-radius: 2px;
+    top: 15px;
+}
+
+.button__icon:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    background-color: #606061;
+    border-radius: 2px;
+    bottom: 15px;
+}
+
+.header__menu-button._active .button__icon:before {
+    top: 23px;
+    transform: rotate(45deg);
+    animation: ease 0.25s topMenuElActive;
+}
+
+.header__menu-button._active .button__icon:after {
+    bottom: 23px;
+    transform: rotate(135deg);
+    animation: ease 0.25s bottomMenuElActive;
+}
+
+.header__menu-button._active .button__icon {
+    background-color: #eff0f2;
+    animation: ease 0.25s middleMenuElActive;
+}
+
+.header__menu-button._not-active .button__icon:before {
+    animation: ease 0.25s topMenuElUnactive;
+}
+
+.header__menu-button._not-active .button__icon:after {
+    animation: ease 0.25s bottomMenuElUnactive;
+}
+
+.header__menu-button._not-active .button__icon {
+    animation: ease 0.25s middleMenuElUnactive;
+}
+
+/*                                       active animation      */
+@keyframes topMenuElActive {
+    0% {
+        bottom: 15px;
+        transform: rotate(0);
+    }
+
+    50% {
+        top: 23px;
+        transform: rotate(0);
+    }
+
+    100% {
+        top: 23px;
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes bottomMenuElActive {
+    0% {
+        bottom: 15px;
+        transform: rotate(0);
+    }
+
+    50% {
+        bottom: 23px;
+        transform: rotate(0);
+    }
+
+    100% {
+        bottom: 23px;
+        transform: rotate(135deg);
+    }
+}
+
+@keyframes middleMenuElActive {
+    0% {
+        background-color: #606061;
+    }
+
+    100% {
+        background-color: #eff0f2;
+    }
+}
+
+/*                                  Unactive animation      */
+
+@keyframes topMenuElUnactive {
+    0% {
+        top: 23px;
+        transform: rotate(45deg);
+    }
+
+    50% {
+        top: 23px;
+        transform: rotate(0);
+    }
+
+    100% {
+        bottom: 15px;
+        transform: rotate(0);
+    }
+}
+
+@keyframes bottomMenuElUnactive {
+    0% {
+        bottom: 23px;
+        transform: rotate(135deg);
+    }
+    
+    50% {
+        bottom: 23px;
+        transform: rotate(0);
+    }
+    
+    100% {
+        bottom: 15px;
+        transform: rotate(0);
+    }
+}
+
+@keyframes middleMenuElUnactive {
+    0% {
+        background-color: #eff0f2;
+    }
+    
+    100% {
+        background-color: #606061;
+    }
+}
+
+.header__menu {
+    position: absolute;
+    background-color: #ccc;
+}
+/* */
 .header__heading {
     margin-top: 16%;
     line-height: 1.3em;
