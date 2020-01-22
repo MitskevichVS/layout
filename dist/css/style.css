@@ -18,10 +18,15 @@ body {
 }
 
 .header__content-top {
-    display: flex;
-    justify-content: space-between;
     margin-top: 62px;
     background-color: #eff0f2;
+}
+
+.header__wrapper-top {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header__content-top._stick {
@@ -31,7 +36,6 @@ body {
     margin: 0;
     width: 100%;
     z-index: 10;
-    justify-content: space-around;
 }
 
 .header__logo {
