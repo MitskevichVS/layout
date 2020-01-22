@@ -2,6 +2,7 @@ export default class HeaderController {
     constructor(headerMenuContainer, headerHeading) {
         this.headerMenuContainer = headerMenuContainer;
         this.headerHeading = headerHeading;
+        this.previousCoordinate = window.pageYOffset;
     }
 
     init() {
@@ -13,12 +14,23 @@ export default class HeaderController {
     }
 
     scrollEvent() {
-        if (pageYOffset >= 64) {
+
+        if (document.documentElement.scrollHeight - document.documentElement.scrollTop === document.documentElement.clientHeight) {
+            return;
+        }
+
+        if (this.previousCoordinate < pageYOffset && pageYOffset >= 100) {
+            this.headerMenuContainer.classList.add('_hidden');
+        } else {
+            this.headerMenuContainer.classList.remove('_hidden');
+        }
+
+        if (pageYOffset >= 118) {
             this.headerMenuContainer.classList.add('_stick');
-            this.headerHeading.classList.add('_indented');
         } else {
             this.headerMenuContainer.classList.remove('_stick');
-            this.headerHeading.classList.remove('_indented');
         }
+
+        this.previousCoordinate = pageYOffset;
     }
 }

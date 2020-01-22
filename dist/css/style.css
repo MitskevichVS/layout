@@ -18,8 +18,11 @@ body {
 }
 
 .header__content-top {
-    margin-top: 62px;
+    position: absolute;
+    width: 100%;
+    top: 62px;
     background-color: #eff0f2;
+    transition: top 0.25s ease;
 }
 
 .header__wrapper-top {
@@ -36,9 +39,13 @@ body {
     margin: 0;
     width: 100%;
     z-index: 10;
-    -webkit-box-shadow: 0px 6px 8px 0px rgba(189,189,189,0.5);
-    -moz-box-shadow: 0px 6px 8px 0px rgba(189,189,189,0.5);
-    box-shadow: 0px 6px 8px 0px rgba(189,189,189,0.5);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(189,189,189,0.5);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(189,189,189,0.5);
+    box-shadow: 0px 1px 4px 0px rgba(189,189,189,0.5);
+}
+
+.header__content-top._hidden {
+    top: -58px;
 }
 
 .header__logo {
@@ -57,7 +64,7 @@ body {
 }
 
 .header__heading {
-    margin-top: 16%;
+    margin-top: 26%;
     line-height: 1.3em;
     color: #505050;
     font-family: Montserrat, sans-serif;
@@ -67,10 +74,6 @@ body {
     text-align: center;
     text-shadow: 3px 6px 5px rgba(131,132,132,0.6);
     letter-spacing: 1.6px;
-}
-
-.header__heading._indented {
-    margin-top: 26.5%;
 }
 
 .header__heading span {
