@@ -26,25 +26,30 @@ export default class HeaderController {
     }
 
     headerMenuButtonEventListener() {
-        const button = document.querySelector('.header__menu-button');
+        const headerMenuButton = document.querySelector('.header__menu-button');
         const animatedHeaderMenu = document.querySelector('.header__menu');
-        button.addEventListener('click', () => {
-            button.classList.toggle('_active');
-            button.classList.toggle('_not-active');
+
+        headerMenuButton.addEventListener('click', () => {
+
+            headerMenuButton.classList.toggle('_active');
+            headerMenuButton.classList.toggle('_not-active');
+
             animatedHeaderMenu.classList.toggle('_active');
             animatedHeaderMenu.classList.toggle('_not-active');
         });
+        
         document.addEventListener('click', (event) => {
             const targetContainer = event.currentTarget;
             const eventPath = event.path || (event.composedPath && event.composedPath());
+            
             const menuButton = checkTargetClassInPath(eventPath, targetContainer,'header__menu-button');
             const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu');
 
             if (!menuButton && !menuBody) {
-                button.classList.remove('_active');
+                headerMenuButton.classList.remove('_active');
                 animatedHeaderMenu.classList.remove('_active');
 
-                button.classList.add('_not-active');
+                headerMenuButton.classList.add('_not-active');
                 animatedHeaderMenu.classList.add('_not-active');
             }
 
