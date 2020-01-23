@@ -100,7 +100,7 @@ body {
 
 .header__menu-button._active .button__icon:after {
     bottom: 23px;
-    transform: rotate(135deg);
+    transform: rotate(-45deg);
     animation: ease 0.25s bottomMenuElActive;
 }
 
@@ -152,7 +152,7 @@ body {
 
     100% {
         bottom: 23px;
-        transform: rotate(135deg);
+        transform: rotate(-45deg);
     }
 }
 
@@ -188,7 +188,7 @@ body {
 @keyframes bottomMenuElUnactive {
     0% {
         bottom: 23px;
-        transform: rotate(135deg);
+        transform: rotate(-45deg);
     }
     
     50% {
