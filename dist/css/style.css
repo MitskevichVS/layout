@@ -56,6 +56,7 @@ body {
     justify-content: center;
     background-color: #eff0f2;
     outline: none;
+    z-index: 11;
 }
 
 .header__menu-button:hover {
@@ -214,8 +215,65 @@ body {
 
 .header__menu {
     position: absolute;
-    background-color: #ccc;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    top: -266px;
+    background-color: #eff0f2;
+    z-index: 9;
+    border: 1px solid #ccc;
 }
+
+.header__menu._active {
+    top: 54px;
+    animation: ease 0.25s topMenuListActive;
+}
+
+.header__menu._not-active {
+    animation: ease 0.25s topMenuListUnactive;
+}
+
+@keyframes topMenuListActive {
+    0% {
+        top: -266px;
+    }
+
+    100% {
+        top: 54px;
+    }
+}
+
+@keyframes topMenuListUnactive {
+    0% {
+        top: 54px;
+    }
+    
+    100% {
+        top: -266px;
+    }
+}
+
+.header__menu-item {
+    list-style-type: none;
+    width: 200px;
+    height: 50px;
+}
+
+.header__menu-item:hover {
+    background-color: #9d9d9e;
+}
+
+.header__menu-item a {
+    display: block;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #505050;
+    font-family: Montserrat, sans-serif;
+}
+
+
 /* */
 .header__heading {
     margin-top: 16%;
