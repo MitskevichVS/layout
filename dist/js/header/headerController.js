@@ -2,23 +2,36 @@ export default class HeaderController {
     constructor(headerMenuContainer, headerHeading) {
         this.headerMenuContainer = headerMenuContainer;
         this.headerHeading = headerHeading;
-        this.previousCoordinate = 0;
-        this.scrollUpFlag = false;
+        this.previousYCoordinate = 0;
+        this.scrollEventExecutionFlag = false;
+        this.headerMenuContainerSize;
     }
 
     init() {
+        this.getHeaderElementSize();
         this.pageScrollListener();
-        //set timer to update scroll coordinate
-        setInterval(this.checkPreviousCoordinate.bind(this), 300);
     }
 
     pageScrollListener() {
-        document.addEventListener('scroll', this.scrollEvent.bind(this));
+        document.addEventListener('scroll', () => {
+            if (!this.scrollEventExecutionFlag) {
+                requestAnimationFrame(this.scrollEvent.bind(this));
+            }
+            this.scrollEventExecutionFlag = true;
+        });
     }
 
     scrollEvent() {
-        const scrollValueWithSafeInterval = document.documentElement.scrollHeight - document.documentElement.clientHeight - 150;
-        const scrollBounce = scrollValueWithSafeInterval <= document.documentElement.scrollTop;
+        this.scrollEventExecutionFlag = false;  // set event execution flag to false
+
+        const safeIntervalForDebounce = 130; // 150px for debounce (Safari)
+        const scrollTopSafeSpace = 50;       // 50px scroll top to show sticky menu
+        const scrollValueWithSafeInterval = document.documentElement.scrollHeight - document.documentElement.clientHeight - safeIntervalForDebounce;
+        const scrollBounce = scrollValueWithSafeInterval < document.documentElement.scrollTop;      // boolean scroll bounce value
+
+        const deltaOfPreviousAndCurrentCoords = this.previousYCoordinate - pageYOffset;
+        const scrollTopValueWithSafeInterval = pageYOffset + scrollTopSafeSpace;
+
 
         // Check bounce (for Safari)
         if (scrollBounce) {
@@ -26,10 +39,10 @@ export default class HeaderController {
         }
 
         // Checking conditions for dynamic menu display
-        if (this.previousCoordinate - pageYOffset >= 0 && this.scrollUpFlag === true) {
-            this.headerMenuContainer.classList.remove('_hidden');
-            this.scrollUpFlag = true;
-        } else if (this.previousCoordinate <= pageYOffset + 70 && pageYOffset >= 100) {
+        if (deltaOfPreviousAndCurrentCoords >= 0 && this.scrollUpFlag) {
+            // this.headerMenuContainer.classList.remove('_hidden');
+            // this.scrollUpFlag = true;
+        } else if (this.previousYCoordinate <= scrollTopValueWithSafeInterval && pageYOffset >= this.headerMenuContainerSize) {
             this.headerMenuContainer.classList.add('_hidden');
             this.scrollUpFlag = false;
         } else {
@@ -38,15 +51,33 @@ export default class HeaderController {
         }
 
         // Checking conditions to fix the menu
-        if (pageYOffset >= 118) {
-            this.headerMenuContainer.classList.add('_stick');
+        if (pageYOffset >= this.headerMenuContainerSize) {
+            this.headerMenuShouldStick();
         } else {
-            this.headerMenuContainer.classList.remove('_stick');
+            this.headerMenuShouldStickOut();
         }
+
+        this.previousYCoordinate = pageYOffset; //  update previous coordinate
     }
 
-    checkPreviousCoordinate() {
-        // update coordinate
-        this.previousCoordinate = pageYOffset;
-    };
+    getHeaderElementSize() {
+        const elementHeight = parseInt(document.defaultView.getComputedStyle(this.headerMenuContainer, '').getPropertyValue('height'), 10);
+        const elementMargin = parseInt(document.defaultView.getComputedStyle(this.headerMenuContainer, '').getPropertyValue('top'), 10);
+
+        this.headerMenuContainerSize = elementHeight + elementMargin;
+    }
+
+    headerMenuShouldStick() {
+        if (this.headerMenuContainer.classList.contains('_stick')) {
+            return;
+        }
+        this.headerMenuContainer.classList.add('_stick');
+    }
+
+    headerMenuShouldStickOut() {
+        if (!this.headerMenuContainer.classList.contains('_stick')) {
+            return;
+        }
+        this.headerMenuContainer.classList.remove('_stick');
+    }
 }
