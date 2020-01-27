@@ -7,6 +7,7 @@ export default class HeaderController {
     this.headerMenuContainerSize = 0;
     this.menuShowFlag = false;
     this.docElement = document.documentElement;
+    this.headerClassList = this.headerMenuContainer.classList;
   }
 
   init() {
@@ -65,36 +66,36 @@ export default class HeaderController {
   }
 
   headerMenuShouldStick() {
-    if (this.headerMenuContainer.classList.contains('_stick')) {
+    if (this.headerClassList.contains('_stick')) {
       return;
     }
 
-    this.headerMenuContainer.classList.add('_stick');
+    this.headerClassList.add('_stick');
   }
 
   headerMenuShouldStickOut() {
-    if (!this.headerMenuContainer.classList.contains('_stick')) {
+    if (!this.headerClassList.contains('_stick')) {
       return;
     }
 
-    this.headerMenuContainer.classList.remove('_stick');
+    this.headerClassList.remove('_stick');
   }
 
   headerMenuShouldHide() {
-    if (this.headerMenuContainer.classList.contains('_hidden')) {
+    if (this.headerClassList.contains('_hidden')) {
       return;
     }
 
-    this.headerMenuContainer.classList.add('_hidden');
+    this.headerClassList.add('_hidden');
     this.menuShowFlag = false;
   }
 
   headerMenuShouldShow() {
-    if (!this.headerMenuContainer.classList.contains('_hidden')) {
+    if (!this.headerClassList.contains('_hidden')) {
       return;
     }
 
-    this.headerMenuContainer.classList.remove('_hidden');
+    this.headerClassList.remove('_hidden');
     this.menuShowFlag = true;
   }
 }
