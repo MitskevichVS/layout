@@ -31,8 +31,6 @@ export default class HeaderController {
     const deltaOfPreviousAndCurrentCoords = this.previousYCoordinate - window.pageYOffset;
     const scrollTopValueWithSafeInterval = window.pageYOffset + scrollTopSafeSpace;
 
-    console.log(docElement.scrollHeight - docElement.clientHeight - docElement.scrollTop);
-
     // Check bounce (for Safari)
     if (scrollBounce) {
       this.scrollEventExecutionFlag = false; // set event execution flag to false
