@@ -46,9 +46,7 @@ export default class HeaderController {
     }
 
     // Checking conditions for dynamic menu display
-    if (deltaOfPreviousAndCurrentCoords >= 0 && this.menuShowFlag) { // scroll top after menu was shown
-      this.headerMenuShouldShow();
-    } else if (this.previousYCoordinate <= scrollTopValueWithSafeInterval && pageYOffset >= this.headerMenuContainerSize) { // scroll bottom or check scroll more than default menu location
+    if (this.previousYCoordinate <= scrollTopValueWithSafeInterval && pageYOffset >= this.headerMenuContainerSize && !(deltaOfPreviousAndCurrentCoords >= 0 && this.menuShowFlag)) { // scroll bottom or check scroll more than default menu location
       this.headerMenuShouldHide();
     } else { // other
       this.headerMenuShouldShow();
