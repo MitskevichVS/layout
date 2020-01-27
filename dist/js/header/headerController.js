@@ -6,6 +6,7 @@ export default class HeaderController {
     this.scrollEventExecutionFlag = false;
     this.headerMenuContainerSize = 0;
     this.menuShowFlag = false;
+    this.docElement = document.documentElement;
   }
 
   init() {
@@ -24,8 +25,7 @@ export default class HeaderController {
 
   scrollEvent() {
     const scrollTopSafeSpace = 50; // 50px scroll top to show sticky menu
-    const docElement = document.documentElement;
-    const scrollBounceValueForSafari = docElement.scrollHeight - docElement.clientHeight - docElement.scrollTop;
+    const scrollBounceValueForSafari = this.docElement.scrollHeight - this.docElement.clientHeight - this.docElement.scrollTop;
     const scrollBounce = scrollBounceValueForSafari < 0; // boolean scroll bounce value
 
     const deltaOfPreviousAndCurrentCoords = this.previousYCoordinate - window.pageYOffset;
