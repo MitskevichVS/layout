@@ -17,6 +17,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'ignoreTrailingComments': 0,
     'ignoreComments': 0,
-    'max-len': 'off'
+    'max-len': 'off',
+    'import/extensions': 'off'
   },
 };

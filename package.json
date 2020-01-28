@@ -4,7 +4,8 @@
   "description": "[PSD link](https://yadi.sk/i/WMf3eaoXnGaEsA)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,8 @@
     "url": "https://github.com/MitskevichVS/layout/issues"
   },
   "homepage": "https://github.com/MitskevichVS/layout#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.0"
