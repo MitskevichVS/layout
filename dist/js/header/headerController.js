@@ -25,12 +25,12 @@ export default class HeaderController {
   }
 
   smoothScrollInit() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (event) {
         event.preventDefault();
 
         document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       });
     });
@@ -59,7 +59,7 @@ export default class HeaderController {
       return;
     }
 
-    //hide header menu list, if necessary
+    // hide header menu list, if necessary
     if (this.isMenuShow) {
       this.hideMenuList();
       document.removeEventListener('click', this.closeMenuByMissclick);
@@ -96,11 +96,12 @@ export default class HeaderController {
     });
   }
 
-  closeMenuByClick() {
+  closeMenuByClick(event) {
+    console.log(event);
     const targetContainer = event.currentTarget;
     const eventPath = event.path || (event.composedPath && event.composedPath());
-    
-    const menuButton = checkTargetClassInPath(eventPath, targetContainer,'header__menu-button'); // check click on button
+
+    const menuButton = checkTargetClassInPath(eventPath, targetContainer, 'header__menu-button'); // check click on button
     const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu'); // check click on memu
 
     if (!menuButton && !menuBody) { // if missclick, hide menu

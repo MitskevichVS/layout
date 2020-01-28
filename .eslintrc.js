@@ -18,6 +18,7 @@ module.exports = {
     'ignoreTrailingComments': 0,
     'ignoreComments': 0,
     'max-len': 'off',
-    'import/extensions': 'off'
+    'import/extensions': 'off',
+    'func-names': 'off'
   },
 };
