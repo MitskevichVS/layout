@@ -14,13 +14,67 @@ body {
     margin: 0 auto;
     padding-top: 1px;
     padding-bottom: 3.3%;
-    position: relative;
+}
+
+.header__wrapper-blackout {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+.header__wrapper-blackout._active {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: ease 0.25s headerShadowShow;
+}
+
+.header__wrapper-blackout._not-active {
+    display: none;
+    background-color: transparent;
+    animation: ease 0.25s headerShadowHide;
+}
+
+@keyframes headerShadowShow {
+    0% {
+        display: none;
+        background-color: transparent;
+    }
+
+    10% {
+        display: block;
+        background-color: transparent;
+    }
+
+    100% {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+@keyframes headerShadowHide {
+    0% {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    90% {
+        display: block;
+        background-color: transparent;
+    }
+    
+    100% {
+        display: none;
+        background-color: transparent;
+    }
 }
 
 .header__content-top {
     position: absolute;
     width: 100%;
     top: 62px;
+    left: 0;
+    z-index: 11;
     background-color: #eff0f2;
     transition: top 0.25s ease;
 }
@@ -225,17 +279,16 @@ body {
 
 .header__menu {
     position: absolute;
+    height: 100vh;
     right: 0;
     padding: 0;
     margin: 0;
-    top: -266px;
+    top: -110vh;
     background-color: #eff0f2;
-    z-index: 9;
-    border: 1px solid #ccc;
 }
 
 .header__menu._active {
-    top: 54px;
+    top: 56px;
     animation: ease 0.25s topMenuListActive;
 }
 
@@ -245,27 +298,27 @@ body {
 
 @keyframes topMenuListActive {
     0% {
-        top: -266px;
+        top: -110vh;
     }
 
     100% {
-        top: 54px;
+        top: 56px;
     }
 }
 
 @keyframes topMenuListUnactive {
     0% {
-        top: 54px;
+        top: 56px;
     }
     
     100% {
-        top: -266px;
+        top: -110vh;
     }
 }
 
 .header__menu-item {
     list-style-type: none;
-    width: 200px;
+    width: 300px;
     height: 50px;
 }
 

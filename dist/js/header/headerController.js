@@ -10,12 +10,33 @@ export default class HeaderController {
     this.menuShowFlag = false;
     this.docElement = document.documentElement;
     this.headerClassList = this.headerMenuContainer.classList;
+    this.headerMenuButton = document.querySelector('.header__menu-button');
+    this.buttonClassList = this.headerMenuButton.classList;
+    this.headerMenuList = document.querySelector('.header__menu');
+    this.menuClassList = this.headerMenuList.classList;
+    this.shadowContainer = document.querySelector('.header__wrapper-blackout');
+    this.shadowClassList = this.shadowContainer.classList;
+    this.closeMenuByMissclick = this.closeMenuByClick.bind(this);
+    this.menuListShowFlag = false;
   }
 
   init() {
     this.getHeaderElementSize();
     this.pageScrollListener();
     this.headerMenuButtonEventListener();
+    this.smoothScrollInit();
+  }
+
+  smoothScrollInit() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (event) {
+          event.preventDefault();
+  
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+          });
+      });
+    });
   }
 
   pageScrollListener() {
@@ -63,34 +84,28 @@ export default class HeaderController {
 
 
   headerMenuButtonEventListener() {
-    const headerMenuButton = document.querySelector('.header__menu-button');
-    const animatedHeaderMenu = document.querySelector('.header__menu');
+    this.headerMenuButton.addEventListener('click', () => {
+      this.menuListToggle();
 
-    headerMenuButton.addEventListener('click', () => {
-
-        headerMenuButton.classList.toggle('_active');
-        headerMenuButton.classList.toggle('_not-active');
-
-        animatedHeaderMenu.classList.toggle('_active');
-        animatedHeaderMenu.classList.toggle('_not-active');
+      if (this.menuListShowFlag) {
+        document.addEventListener('click', this.closeMenuByMissclick);
+      } else {
+        document.removeEventListener('click', this.closeMenuByMissclick);
+      }
     });
+  }
+
+  closeMenuByClick() {
+    const targetContainer = event.currentTarget;
+    const eventPath = event.path || (event.composedPath && event.composedPath());
     
-    document.addEventListener('click', (event) => {
-        const targetContainer = event.currentTarget;
-        const eventPath = event.path || (event.composedPath && event.composedPath());
-        
-        const menuButton = checkTargetClassInPath(eventPath, targetContainer,'header__menu-button');
-        const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu');
+    const menuButton = checkTargetClassInPath(eventPath, targetContainer,'header__menu-button');
+    const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu');
 
-        if (!menuButton && !menuBody) {
-            headerMenuButton.classList.remove('_active');
-            animatedHeaderMenu.classList.remove('_active');
-
-            headerMenuButton.classList.add('_not-active');
-            animatedHeaderMenu.classList.add('_not-active');
-        }
-
-    });
+    if (!menuButton && !menuBody) {
+      this.menuListShouldHide();
+      document.removeEventListener('click', this.closeMenuByMissclick);
+    }
   }
 
   getHeaderElementSize() {
@@ -132,5 +147,29 @@ export default class HeaderController {
 
     this.headerClassList.remove('_hidden');
     this.menuShowFlag = true;
+  }
+
+  menuListToggle() {
+    this.buttonClassList.toggle('_active');
+    this.menuClassList.toggle('_active');
+    this.shadowClassList.toggle('_active');
+
+    this.buttonClassList.toggle('_not-active');
+    this.menuClassList.toggle('_not-active');
+    this.shadowClassList.toggle('_not-active');
+
+    this.menuListShowFlag = !this.menuListShowFlag;
+  }
+
+  menuListShouldHide() {
+    this.buttonClassList.remove('_active');
+    this.menuClassList.remove('_active');
+    this.shadowClassList.remove('_active');
+
+    this.buttonClassList.add('_not-active');
+    this.menuClassList.add('_not-active');
+    this.shadowClassList.add('_not-active');
+
+    this.menuListShowFlag = false;
   }
 }
