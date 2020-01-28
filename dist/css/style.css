@@ -25,7 +25,7 @@ body {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0);
     transition: all 0.25s ease;
     transition-property: z-index, background-color;
 }
@@ -581,7 +581,7 @@ body {
     font-size: 1.2rem;
     text-transform: uppercase;
     box-sizing: border-box;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
     -webkit-transition: border-color 0.25s ease;
     -moz-transition: border-color 0.25s ease;
     -o-transition: border-color 0.25s ease;
@@ -658,17 +658,17 @@ body {
     max-height: 60%;
     overflow-y: scroll;
     overflow-x: auto;
-    scrollbar-color: #befaf5 transparent;
+    scrollbar-color: #befaf5 rgba(0, 0, 0, 0);
 }
 
 .info__text-wrapper::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .info__text-wrapper::-webkit-scrollbar {
 	width: 8px;
-	background-color: transparent;
+	background-color: rgba(0, 0, 0, 0);
 }
 
 .info__text-wrapper::-webkit-scrollbar-thumb {
@@ -693,7 +693,7 @@ body {
     margin: 26px 0 0 11%;
     padding: 0;
     border: 0;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0);
     outline: none;
     transition: background-color 0.25s ease;
 }
