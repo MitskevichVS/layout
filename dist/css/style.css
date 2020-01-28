@@ -20,51 +20,49 @@ body {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: 10;
+    background-color: transparent;
 }
 
 .header__wrapper-blackout._active {
-    display: block;
+    z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
     animation: ease 0.25s headerShadowShow;
 }
 
 .header__wrapper-blackout._not-active {
-    display: none;
-    background-color: transparent;
     animation: ease 0.25s headerShadowHide;
 }
 
 @keyframes headerShadowShow {
     0% {
-        display: none;
+        z-index: 1;
         background-color: transparent;
     }
 
     10% {
-        display: block;
+        z-index: 10;
         background-color: transparent;
     }
 
     100% {
-        display: block;
+        z-index: 10;
         background-color: rgba(0, 0, 0, 0.7);
     }
 }
 
 @keyframes headerShadowHide {
     0% {
-        display: block;
+        z-index: 10;
         background-color: rgba(0, 0, 0, 0.7);
     }
     
     90% {
-        display: block;
+        z-index: 10;
         background-color: transparent;
     }
     
     100% {
-        display: none;
+        z-index: 1;
         background-color: transparent;
     }
 }
