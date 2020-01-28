@@ -97,7 +97,6 @@ export default class HeaderController {
   }
 
   closeMenuByClick(event) {
-    console.log(event);
     const targetContainer = event.currentTarget;
     const eventPath = event.path || (event.composedPath && event.composedPath());
 
