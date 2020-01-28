@@ -213,29 +213,29 @@ body {
 
 @keyframes topMenuElUnactive {
     0% {
-        transform:  translateY(0px) rotate(45deg);
+        transform: translateY(0px) rotate(45deg);
     }
 
     50% {
-        transform:  translateY(0px) rotate(0);
+        transform: translateY(0px) rotate(0);
     }
 
     100% {
-        transform:  translateY(-8px) rotate(0);
+        transform: translateY(-8px) rotate(0);
     }
 }
 
 @keyframes bottomMenuElUnactive {
     0% {
-        transform:  translateY(0px) rotate(-45deg);
+        transform: translateY(0px) rotate(-45deg);
     }
     
     50% {
-        transform:  translateY(0px) rotate(0);
+        transform: translateY(0px) rotate(0);
     }
     
     100% {
-        transform:  translateY(8px) rotate(0);
+        transform: translateY(8px) rotate(0);
     }
 }
 
