@@ -21,16 +21,13 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: transparent;
+    animation: ease 0.25s headerShadowHide;
 }
 
-.header__wrapper-blackout._active {
+.header._active .header__wrapper-blackout {
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
     animation: ease 0.25s headerShadowShow;
-}
-
-.header__wrapper-blackout._not-active {
-    animation: ease 0.25s headerShadowHide;
 }
 
 @keyframes headerShadowShow {
@@ -131,6 +128,7 @@ body {
     background-color: #606061;
     border-radius: 2px;
     opacity: 1;
+    animation: ease 0.25s middleMenuElUnactive;
 }
 
 .button__icon:before {
@@ -142,6 +140,7 @@ body {
     background-color: #606061;
     border-radius: 2px;
     top: 15px;
+    animation: ease 0.25s topMenuElUnactive;
 }
 
 .button__icon:after {
@@ -153,35 +152,24 @@ body {
     background-color: #606061;
     border-radius: 2px;
     bottom: 15px;
+    animation: ease 0.25s bottomMenuElUnactive;
 }
 
-.header__menu-button._active .button__icon:before {
+.header._active .button__icon:before {
     top: 23px;
     transform: rotate(45deg);
     animation: ease 0.25s topMenuElActive;
 }
 
-.header__menu-button._active .button__icon:after {
+.header._active .button__icon:after {
     bottom: 23px;
     transform: rotate(-45deg);
     animation: ease 0.25s bottomMenuElActive;
 }
 
-.header__menu-button._active .button__icon {
+.header._active .button__icon {
     background-color: #eff0f2;
     animation: ease 0.25s middleMenuElActive;
-}
-
-.header__menu-button._not-active .button__icon:before {
-    animation: ease 0.25s topMenuElUnactive;
-}
-
-.header__menu-button._not-active .button__icon:after {
-    animation: ease 0.25s bottomMenuElUnactive;
-}
-
-.header__menu-button._not-active .button__icon {
-    animation: ease 0.25s middleMenuElUnactive;
 }
 
 /*                                       active animation      */
@@ -283,15 +271,12 @@ body {
     margin: 0;
     top: -110vh;
     background-color: #eff0f2;
+    animation: ease 0.25s topMenuListUnactive;
 }
 
-.header__menu._active {
+.header._active .header__menu {
     top: 56px;
     animation: ease 0.25s topMenuListActive;
-}
-
-.header__menu._not-active {
-    animation: ease 0.25s topMenuListUnactive;
 }
 
 @keyframes topMenuListActive {

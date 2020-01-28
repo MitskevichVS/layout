@@ -9,13 +9,10 @@ export default class HeaderController {
     this.headerMenuContainerSize = 0;
     this.menuShowFlag = false;
     this.docElement = document.documentElement;
-    this.headerClassList = this.headerMenuContainer.classList;
+    this.headerMenuClassList = this.headerMenuContainer.classList;
     this.headerMenuButton = document.querySelector('.header__menu-button');
-    this.buttonClassList = this.headerMenuButton.classList;
-    this.headerMenuList = document.querySelector('.header__menu');
-    this.menuClassList = this.headerMenuList.classList;
-    this.shadowContainer = document.querySelector('.header__wrapper-blackout');
-    this.shadowClassList = this.shadowContainer.classList;
+    this.header = document.querySelector('.header');
+    this.headerClassList = this.header.classList;
     this.closeMenuByMissclick = this.closeMenuByClick.bind(this);
     this.menuListShowFlag = false;
   }
@@ -30,11 +27,11 @@ export default class HeaderController {
   smoothScrollInit() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (event) {
-          event.preventDefault();
-  
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-              behavior: 'smooth'
-          });
+        event.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
       });
     });
   }
@@ -62,6 +59,12 @@ export default class HeaderController {
       return;
     }
 
+    //hide header menu list, if necessary
+    if (this.menuListShowFlag) {
+      this.hideMenuList();
+      document.removeEventListener('click', this.closeMenuByMissclick);
+    }
+
     // Checking conditions to fix the menu
     if (window.pageYOffset >= this.headerMenuContainerSize) {
       this.headerMenuShouldStick();
@@ -82,15 +85,13 @@ export default class HeaderController {
     this.scrollEventExecutionFlag = false; // set event execution flag to false
   }
 
-
   headerMenuButtonEventListener() {
     this.headerMenuButton.addEventListener('click', () => {
-      this.menuListToggle();
-
-      if (this.menuListShowFlag) {
-        document.addEventListener('click', this.closeMenuByMissclick);
+      if (!this.menuListShowFlag) {
+        this.showMenuList();
+        requestAnimationFrame(() => document.addEventListener('click', this.closeMenuByMissclick));
       } else {
-        document.removeEventListener('click', this.closeMenuByMissclick);
+        this.hideMenuList();
       }
     });
   }
@@ -103,7 +104,7 @@ export default class HeaderController {
     const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu');
 
     if (!menuButton && !menuBody) {
-      this.menuListShouldHide();
+      this.hideMenuList();
       document.removeEventListener('click', this.closeMenuByMissclick);
     }
   }
@@ -116,60 +117,46 @@ export default class HeaderController {
   }
 
   headerMenuShouldStick() {
-    if (this.headerClassList.contains('_stick')) {
+    if (this.headerMenuClassList.contains('_stick')) {
       return;
     }
 
-    this.headerClassList.add('_stick');
+    this.headerMenuClassList.add('_stick');
   }
 
   headerMenuShouldStickOut() {
-    if (!this.headerClassList.contains('_stick')) {
+    if (!this.headerMenuClassList.contains('_stick')) {
       return;
     }
 
-    this.headerClassList.remove('_stick');
+    this.headerMenuClassList.remove('_stick');
   }
 
   headerMenuShouldHide() {
-    if (this.headerClassList.contains('_hidden')) {
+    if (this.headerMenuClassList.contains('_hidden')) {
       return;
     }
 
-    this.headerClassList.add('_hidden');
+    this.headerMenuClassList.add('_hidden');
     this.menuShowFlag = false;
   }
 
   headerMenuShouldShow() {
-    if (!this.headerClassList.contains('_hidden')) {
+    if (!this.headerMenuClassList.contains('_hidden')) {
       return;
     }
 
-    this.headerClassList.remove('_hidden');
+    this.headerMenuClassList.remove('_hidden');
     this.menuShowFlag = true;
   }
 
-  menuListToggle() {
-    this.buttonClassList.toggle('_active');
-    this.menuClassList.toggle('_active');
-    this.shadowClassList.toggle('_active');
-
-    this.buttonClassList.toggle('_not-active');
-    this.menuClassList.toggle('_not-active');
-    this.shadowClassList.toggle('_not-active');
-
-    this.menuListShowFlag = !this.menuListShowFlag;
+  showMenuList() {
+    this.headerClassList.add('_active');
+    this.menuListShowFlag = true;
   }
 
-  menuListShouldHide() {
-    this.buttonClassList.remove('_active');
-    this.menuClassList.remove('_active');
-    this.shadowClassList.remove('_active');
-
-    this.buttonClassList.add('_not-active');
-    this.menuClassList.add('_not-active');
-    this.shadowClassList.add('_not-active');
-
+  hideMenuList() {
+    this.headerClassList.remove('_active');
     this.menuListShowFlag = false;
   }
 }
