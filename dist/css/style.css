@@ -139,7 +139,7 @@ body {
     width: 30px;
     background-color: #606061;
     border-radius: 2px;
-    top: 15px;
+    transform: translateY(-8px);
     animation: ease 0.25s topMenuElUnactive;
 }
 
@@ -151,19 +151,17 @@ body {
     width: 30px;
     background-color: #606061;
     border-radius: 2px;
-    bottom: 15px;
+    transform: translateY(8px);
     animation: ease 0.25s bottomMenuElUnactive;
 }
 
 .header._active .button__icon:before {
-    top: 23px;
-    transform: rotate(45deg);
+    transform: translateY(0px) rotate(45deg);
     animation: ease 0.25s topMenuElActive;
 }
 
 .header._active .button__icon:after {
-    bottom: 23px;
-    transform: rotate(-45deg);
+    transform: translateY(0px) rotate(-45deg);
     animation: ease 0.25s bottomMenuElActive;
 }
 
@@ -175,35 +173,29 @@ body {
 /*                                       active animation      */
 @keyframes topMenuElActive {
     0% {
-        bottom: 15px;
-        transform: rotate(0);
+        transform: translateY(-8px) rotate(0);
     }
 
     50% {
-        top: 23px;
-        transform: rotate(0);
+        transform: translateY(0px) rotate(0);
     }
 
     100% {
-        top: 23px;
-        transform: rotate(45deg);
+        transform: translateY(0px) rotate(45deg);
     }
 }
 
 @keyframes bottomMenuElActive {
     0% {
-        bottom: 15px;
-        transform: rotate(0);
+        transform: translateY(8px) rotate(0);
     }
 
     50% {
-        bottom: 23px;
-        transform: rotate(0);
+        transform: translateY(0px) rotate(0);
     }
 
     100% {
-        bottom: 23px;
-        transform: rotate(-45deg);
+        transform: translateY(0px) rotate(-45deg);
     }
 }
 
@@ -221,35 +213,29 @@ body {
 
 @keyframes topMenuElUnactive {
     0% {
-        top: 23px;
-        transform: rotate(45deg);
+        transform:  translateY(0px) rotate(45deg);
     }
 
     50% {
-        top: 23px;
-        transform: rotate(0);
+        transform:  translateY(0px) rotate(0);
     }
 
     100% {
-        bottom: 15px;
-        transform: rotate(0);
+        transform:  translateY(-8px) rotate(0);
     }
 }
 
 @keyframes bottomMenuElUnactive {
     0% {
-        bottom: 23px;
-        transform: rotate(-45deg);
+        transform:  translateY(0px) rotate(-45deg);
     }
     
     50% {
-        bottom: 23px;
-        transform: rotate(0);
+        transform:  translateY(0px) rotate(0);
     }
     
     100% {
-        bottom: 15px;
-        transform: rotate(0);
+        transform:  translateY(8px) rotate(0);
     }
 }
 
@@ -269,33 +255,33 @@ body {
     right: 0;
     padding: 0;
     margin: 0;
-    top: -110vh;
+    transform: translateY(-110vh);
     background-color: #eff0f2;
     animation: ease 0.25s topMenuListUnactive;
 }
 
 .header._active .header__menu {
-    top: 56px;
+    transform: translateY(56px);
     animation: ease 0.25s topMenuListActive;
 }
 
 @keyframes topMenuListActive {
     0% {
-        top: -110vh;
+        transform: translateY(-110vh);
     }
 
     100% {
-        top: 56px;
+        transform: translateY(56px);
     }
 }
 
 @keyframes topMenuListUnactive {
     0% {
-        top: 56px;
+        transform: translateY(56px);
     }
     
     100% {
-        top: -110vh;
+        transform: translateY(-110vh);
     }
 }
 
