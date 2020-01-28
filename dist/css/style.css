@@ -21,13 +21,13 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: transparent;
-    animation: ease 0.25s headerShadowHide;
+    animation: headerShadowHide 0.25s ease;
 }
 
 .header._active .header__wrapper-blackout {
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
-    animation: ease 0.25s headerShadowShow;
+    animation: headerShadowShow 0.25s ease;
 }
 
 @keyframes headerShadowShow {
@@ -128,7 +128,7 @@ body {
     background-color: #606061;
     border-radius: 2px;
     opacity: 1;
-    animation: ease 0.25s middleMenuElUnactive;
+    animation: middleMenuElUnactive 0.25s ease;
 }
 
 .button__icon:before {
@@ -140,7 +140,7 @@ body {
     background-color: #606061;
     border-radius: 2px;
     transform: translateY(-8px);
-    animation: ease 0.25s topMenuElUnactive;
+    animation: topMenuElUnactive 0.25s ease;
 }
 
 .button__icon:after {
@@ -152,25 +152,25 @@ body {
     background-color: #606061;
     border-radius: 2px;
     transform: translateY(8px);
-    animation: ease 0.25s bottomMenuElUnactive;
+    animation: bottomMenuElUnactive 0.25s ease;
 }
 
 .header._active .button__icon:before {
     transform: translateY(0px) rotate(45deg);
-    animation: ease 0.25s topMenuElActive;
+    animation: topMenuElActive 0.25s ease;
 }
 
 .header._active .button__icon:after {
     transform: translateY(0px) rotate(-45deg);
-    animation: ease 0.25s bottomMenuElActive;
+    animation: bottomMenuElActive 0.25s ease;
 }
 
 .header._active .button__icon {
     background-color: #eff0f2;
-    animation: ease 0.25s middleMenuElActive;
+    animation: middleMenuElActive 0.25s ease;
 }
 
-/*                                       active animation      */
+/* active animation */
 @keyframes topMenuElActive {
     0% {
         transform: translateY(-8px) rotate(0);
@@ -209,7 +209,7 @@ body {
     }
 }
 
-/*                                  Unactive animation      */
+/* Unactive animation */
 
 @keyframes topMenuElUnactive {
     0% {
@@ -257,12 +257,12 @@ body {
     margin: 0;
     transform: translateY(-110vh);
     background-color: #eff0f2;
-    animation: ease 0.25s topMenuListUnactive;
+    animation: topMenuListUnactive 0.25s ease;
 }
 
 .header._active .header__menu {
     transform: translateY(56px);
-    animation: ease 0.25s topMenuListActive;
+    animation: topMenuListActive 0.25s ease;
 }
 
 @keyframes topMenuListActive {
@@ -305,8 +305,6 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
-
-/* */
 .header__heading {
     margin-top: 26%;
     line-height: 1.3em;
