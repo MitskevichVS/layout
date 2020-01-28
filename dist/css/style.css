@@ -3,6 +3,11 @@
 body {
     margin: 0;
     padding: 0;
+    opacity: 1;
+}
+
+.hide {
+    opacity: 0;
 }
 
 .header {
@@ -21,47 +26,13 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: transparent;
-    animation: headerShadowHide 0.25s ease;
+    transition: all 0.25s ease;
+    transition-property: z-index, background-color;
 }
 
 .header._active .header__wrapper-blackout {
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
-    animation: headerShadowShow 0.25s ease;
-}
-
-@keyframes headerShadowShow {
-    0% {
-        z-index: 1;
-        background-color: transparent;
-    }
-
-    10% {
-        z-index: 10;
-        background-color: transparent;
-    }
-
-    100% {
-        z-index: 10;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-}
-
-@keyframes headerShadowHide {
-    0% {
-        z-index: 10;
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-    
-    90% {
-        z-index: 10;
-        background-color: transparent;
-    }
-    
-    100% {
-        z-index: 1;
-        background-color: transparent;
-    }
 }
 
 .header__content-top {
@@ -128,7 +99,7 @@ body {
     background-color: #606061;
     border-radius: 2px;
     opacity: 1;
-    animation: middleMenuElUnactive 0.25s ease;
+    transition: background-color 0.25s ease;
 }
 
 .button__icon:before {
@@ -167,7 +138,6 @@ body {
 
 .header._active .button__icon {
     background-color: #eff0f2;
-    animation: middleMenuElActive 0.25s ease;
 }
 
 /* active animation */
@@ -196,16 +166,6 @@ body {
 
     100% {
         transform: translateY(0px) rotate(-45deg);
-    }
-}
-
-@keyframes middleMenuElActive {
-    0% {
-        background-color: #606061;
-    }
-
-    100% {
-        background-color: #eff0f2;
     }
 }
 
@@ -239,16 +199,6 @@ body {
     }
 }
 
-@keyframes middleMenuElUnactive {
-    0% {
-        background-color: #eff0f2;
-    }
-    
-    100% {
-        background-color: #606061;
-    }
-}
-
 .header__menu {
     position: absolute;
     height: 100vh;
@@ -257,32 +207,11 @@ body {
     margin: 0;
     transform: translateY(-110vh);
     background-color: #eff0f2;
-    animation: topMenuListUnactive 0.25s ease;
+    transition: transform 0.25s ease;
 }
 
 .header._active .header__menu {
     transform: translateY(56px);
-    animation: topMenuListActive 0.25s ease;
-}
-
-@keyframes topMenuListActive {
-    0% {
-        transform: translateY(-110vh);
-    }
-
-    100% {
-        transform: translateY(56px);
-    }
-}
-
-@keyframes topMenuListUnactive {
-    0% {
-        transform: translateY(56px);
-    }
-    
-    100% {
-        transform: translateY(-110vh);
-    }
 }
 
 .header__menu-item {
@@ -340,8 +269,8 @@ body {
 
 .header__content-bottom {
     position: absolute;
-    bottom: 16.7%;
-    right: 8.5%;
+    top: 66.7%;
+    right: 31.5%;
 }
 
 .header__image {
