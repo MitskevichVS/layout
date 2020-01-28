@@ -21,6 +21,6 @@ window.onload = () => {
     headerClass.init();
 
     if (pageYOffset >= 64){
-        headerClass.scrollEvent();
+        headerClass.handleScrollEvent();
     }
 };

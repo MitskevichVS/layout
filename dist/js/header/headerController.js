@@ -7,20 +7,20 @@ export default class HeaderController {
     this.previousYCoordinate = 0;
     this.scrollEventExecutionFlag = false;
     this.headerMenuContainerSize = 0;
-    this.menuShowFlag = false;
+    this.isHeaderLineShow = false;
     this.docElement = document.documentElement;
     this.headerMenuClassList = this.headerMenuContainer.classList;
     this.headerMenuButton = document.querySelector('.header__menu-button');
-    this.header = document.querySelector('.header');
-    this.headerClassList = this.header.classList;
+    this.headerElement = document.querySelector('.header');
+    this.headerClassList = this.headerElement.classList;
     this.closeMenuByMissclick = this.closeMenuByClick.bind(this);
-    this.menuListShowFlag = false;
+    this.isMenuShow = false;
   }
 
   init() {
     this.getHeaderElementSize();
-    this.pageScrollListener();
-    this.headerMenuButtonEventListener();
+    this.addScrollListener();
+    this.addButtonEventListener();
     this.smoothScrollInit();
   }
 
@@ -36,16 +36,16 @@ export default class HeaderController {
     });
   }
 
-  pageScrollListener() {
+  addScrollListener() {
     document.addEventListener('scroll', () => {
       if (!this.scrollEventExecutionFlag) {
-        requestAnimationFrame(this.scrollEvent.bind(this));
+        requestAnimationFrame(this.handleScrollEvent.bind(this));
         this.scrollEventExecutionFlag = true;
       }
     });
   }
 
-  scrollEvent() {
+  handleScrollEvent() {
     const scrollTopSafeSpace = 50; // 50px scroll top to show sticky menu
     const scrollBounceValueForSafari = this.docElement.scrollHeight - this.docElement.clientHeight - this.docElement.scrollTop;
     const scrollBounce = scrollBounceValueForSafari < 0; // boolean scroll bounce value
@@ -60,38 +60,38 @@ export default class HeaderController {
     }
 
     //hide header menu list, if necessary
-    if (this.menuListShowFlag) {
+    if (this.isMenuShow) {
       this.hideMenuList();
       document.removeEventListener('click', this.closeMenuByMissclick);
     }
 
     // Checking conditions to fix the menu
     if (window.pageYOffset >= this.headerMenuContainerSize) {
-      this.headerMenuShouldStick();
+      this.stickHeaderLine();
     } else {
-      this.headerMenuShouldStickOut();
+      this.unstickHeaderLine();
     }
 
     // Checking conditions for dynamic menu display
     if (this.previousYCoordinate <= scrollTopValueWithSafeInterval
       && window.pageYOffset >= this.headerMenuContainerSize
-      && !(deltaOfPreviousAndCurrentCoords >= 0 && this.menuShowFlag)) { // scroll bottom or check scroll more than default menu location
-      this.headerMenuShouldHide();
+      && !(deltaOfPreviousAndCurrentCoords >= 0 && this.isHeaderLineShow)) { // scroll bottom or check scroll more than default menu location
+      this.hideHeaderLine();
     } else { // other
-      this.headerMenuShouldShow();
+      this.showHeaderLine();
     }
 
     this.previousYCoordinate = window.pageYOffset; //  update previous coordinate
     this.scrollEventExecutionFlag = false; // set event execution flag to false
   }
 
-  headerMenuButtonEventListener() {
+  addButtonEventListener() {
     this.headerMenuButton.addEventListener('click', () => {
-      if (!this.menuListShowFlag) {
+      if (!this.isMenuShow) { // if menu not shown, show it and add event listener to close menu if click was outside
         this.showMenuList();
         requestAnimationFrame(() => document.addEventListener('click', this.closeMenuByMissclick));
       } else {
-        this.hideMenuList();
+        this.hideMenuList(); // else hide menu list
       }
     });
   }
@@ -100,10 +100,10 @@ export default class HeaderController {
     const targetContainer = event.currentTarget;
     const eventPath = event.path || (event.composedPath && event.composedPath());
     
-    const menuButton = checkTargetClassInPath(eventPath, targetContainer,'header__menu-button');
-    const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu');
+    const menuButton = checkTargetClassInPath(eventPath, targetContainer,'header__menu-button'); // check click on button
+    const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu'); // check click on memu
 
-    if (!menuButton && !menuBody) {
+    if (!menuButton && !menuBody) { // if missclick, hide menu
       this.hideMenuList();
       document.removeEventListener('click', this.closeMenuByMissclick);
     }
@@ -116,7 +116,7 @@ export default class HeaderController {
     this.headerMenuContainerSize = elementHeight + elementMargin;
   }
 
-  headerMenuShouldStick() {
+  stickHeaderLine() {
     if (this.headerMenuClassList.contains('_stick')) {
       return;
     }
@@ -124,7 +124,7 @@ export default class HeaderController {
     this.headerMenuClassList.add('_stick');
   }
 
-  headerMenuShouldStickOut() {
+  unstickHeaderLine() {
     if (!this.headerMenuClassList.contains('_stick')) {
       return;
     }
@@ -132,31 +132,31 @@ export default class HeaderController {
     this.headerMenuClassList.remove('_stick');
   }
 
-  headerMenuShouldHide() {
+  hideHeaderLine() {
     if (this.headerMenuClassList.contains('_hidden')) {
       return;
     }
 
     this.headerMenuClassList.add('_hidden');
-    this.menuShowFlag = false;
+    this.isHeaderLineShow = false;
   }
 
-  headerMenuShouldShow() {
+  showHeaderLine() {
     if (!this.headerMenuClassList.contains('_hidden')) {
       return;
     }
 
     this.headerMenuClassList.remove('_hidden');
-    this.menuShowFlag = true;
+    this.isHeaderLineShow = true;
   }
 
   showMenuList() {
     this.headerClassList.add('_active');
-    this.menuListShowFlag = true;
+    this.isMenuShow = true;
   }
 
   hideMenuList() {
     this.headerClassList.remove('_active');
-    this.menuListShowFlag = false;
+    this.isMenuShow = false;
   }
 }
