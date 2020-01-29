@@ -19,7 +19,7 @@ export default class Gallery {
 
       // check what button was pressed
       const pressedElement = checkTargetClassInPath(eventPath, event.currentTarget, 'item__text-button')
-                                    || checkTargetClassInPath(eventPath, event.currentTarget, 'item__info-button');
+        || checkTargetClassInPath(eventPath, event.currentTarget, 'item__info-button');
 
       // if not button, return
       if (!pressedElement) {
