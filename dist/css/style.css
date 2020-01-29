@@ -26,13 +26,47 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0);
-    transition: all 0.25s ease;
-    transition-property: z-index, background-color;
+    animation: hideShadow 0.25s ease;
 }
 
 .header._active .header__wrapper-blackout {
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
+    animation: showShadow 0.25s ease;
+}
+
+@keyframes showShadow {
+    0% {
+        z-index: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    10% {
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+@keyframes hideShadow {
+    0% {
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    90% {
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    
+    100% {
+        z-index: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
 }
 
 .header__content-top {
