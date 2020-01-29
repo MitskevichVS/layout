@@ -7,6 +7,7 @@ export default class HeaderController {
     this.previousYCoordinate = 0;
     this.scrollEventExecutionFlag = false;
     this.headerMenuContainerSize = 0;
+    this.headerMenuContainerMargin = 0;
     this.isHeaderLineShow = false;
     this.docElement = document.documentElement;
     this.headerMenuClassList = this.headerMenuContainer.classList;
@@ -66,7 +67,7 @@ export default class HeaderController {
     }
 
     // Checking conditions to fix the menu
-    if (window.pageYOffset >= this.headerMenuContainerSize) {
+    if (window.pageYOffset >= this.headerMenuContainerMargin) {
       this.stickHeaderLine();
     } else {
       this.unstickHeaderLine();
@@ -74,7 +75,7 @@ export default class HeaderController {
 
     // Checking conditions for dynamic menu display
     if (this.previousYCoordinate <= scrollTopValueWithSafeInterval
-      && window.pageYOffset >= this.headerMenuContainerSize
+      && window.pageYOffset > this.headerMenuContainerSize
       && !(deltaOfPreviousAndCurrentCoords >= 0 && this.isHeaderLineShow)) { // scroll bottom or check scroll more than default menu location
       this.hideHeaderLine();
     } else { // other
@@ -113,6 +114,7 @@ export default class HeaderController {
     const elementHeight = parseInt(document.defaultView.getComputedStyle(this.headerMenuContainer, '').getPropertyValue('height'), 10);
     const elementMargin = parseInt(document.defaultView.getComputedStyle(this.headerMenuContainer, '').getPropertyValue('top'), 10);
 
+    this.headerMenuContainerMargin = elementMargin;
     this.headerMenuContainerSize = elementHeight + elementMargin;
   }
 
