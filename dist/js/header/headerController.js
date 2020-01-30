@@ -1,3 +1,5 @@
+import checkTargetClassInPath from '../utils/pathChecker.js';
+
 export default class HeaderController {
   constructor(headerMenuContainer, headerHeading) {
     this.headerMenuContainer = headerMenuContainer;
@@ -5,26 +7,46 @@ export default class HeaderController {
     this.previousYCoordinate = 0;
     this.scrollEventExecutionFlag = false;
     this.headerMenuContainerSize = 0;
-    this.menuShowFlag = false;
+    this.headerMenuContainerMargin = 0;
+    this.isHeaderLineShow = false;
     this.docElement = document.documentElement;
-    this.headerClassList = this.headerMenuContainer.classList;
+    this.headerMenuClassList = this.headerMenuContainer.classList;
+    this.headerMenuButton = document.querySelector('.header__menu-button');
+    this.headerElement = document.querySelector('.header');
+    this.headerClassList = this.headerElement.classList;
+    this.closeMenuByMissclick = this.closeMenuByClick.bind(this);
+    this.isMenuShow = false;
   }
 
   init() {
     this.getHeaderElementSize();
-    this.pageScrollListener();
+    this.addScrollListener();
+    this.addButtonEventListener();
+    this.smoothScrollInit();
   }
 
-  pageScrollListener() {
+  smoothScrollInit() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth',
+        });
+      });
+    });
+  }
+
+  addScrollListener() {
     document.addEventListener('scroll', () => {
       if (!this.scrollEventExecutionFlag) {
-        requestAnimationFrame(this.scrollEvent.bind(this));
+        requestAnimationFrame(this.handleScrollEvent.bind(this));
         this.scrollEventExecutionFlag = true;
       }
     });
   }
 
-  scrollEvent() {
+  handleScrollEvent() {
     const scrollTopSafeSpace = 50; // 50px scroll top to show sticky menu
     const scrollBounceValueForSafari = this.docElement.scrollHeight - this.docElement.clientHeight - this.docElement.scrollTop;
     const scrollBounce = scrollBounceValueForSafari < 0; // boolean scroll bounce value
@@ -32,70 +54,121 @@ export default class HeaderController {
     const deltaOfPreviousAndCurrentCoords = this.previousYCoordinate - window.pageYOffset;
     const scrollTopValueWithSafeInterval = window.pageYOffset + scrollTopSafeSpace;
 
+    const scrollBottom = () => {
+      if (window.pageYOffset > this.headerMenuContainerSize) {
+        this.hideHeaderLine();
+      }
+    };
+
+    const scrollTop = () => {
+      if (window.pageYOffset > this.headerMenuContainerSize && this.previousYCoordinate >= scrollTopValueWithSafeInterval) {
+        this.stickHeaderLine();
+        this.showHeaderLine();
+      }
+
+      if (this.isHeaderLineShow && window.pageYOffset <= this.headerMenuContainerMargin) {
+        this.unstickHeaderLine();
+      } else if (!this.isHeaderLineShow && window.pageYOffset <= this.headerMenuContainerSize) {
+        this.unstickHeaderLine();
+        this.showHeaderLine();
+      }
+    };
+
+    if (deltaOfPreviousAndCurrentCoords < 0) {
+      scrollBottom();
+    } else {
+      scrollTop();
+    }
+
     // Check bounce (for Safari)
     if (scrollBounce) {
       this.scrollEventExecutionFlag = false; // set event execution flag to false
       return;
     }
 
-    // Checking conditions to fix the menu
-    if (window.pageYOffset >= this.headerMenuContainerSize) {
-      this.headerMenuShouldStick();
-    } else {
-      this.headerMenuShouldStickOut();
-    }
-
-    // Checking conditions for dynamic menu display
-    if (this.previousYCoordinate <= scrollTopValueWithSafeInterval
-      && window.pageYOffset >= this.headerMenuContainerSize
-      && !(deltaOfPreviousAndCurrentCoords >= 0 && this.menuShowFlag)) { // scroll bottom or check scroll more than default menu location
-      this.headerMenuShouldHide();
-    } else { // other
-      this.headerMenuShouldShow();
+    // hide header menu list, if necessary
+    if (this.isMenuShow) {
+      this.hideMenuList();
+      document.removeEventListener('click', this.closeMenuByMissclick);
     }
 
     this.previousYCoordinate = window.pageYOffset; //  update previous coordinate
     this.scrollEventExecutionFlag = false; // set event execution flag to false
   }
 
+  addButtonEventListener() {
+    this.headerMenuButton.addEventListener('click', () => {
+      if (!this.isMenuShow) { // if menu not shown, show it and add event listener to close menu if click was outside
+        this.showMenuList();
+        requestAnimationFrame(() => document.addEventListener('click', this.closeMenuByMissclick));
+      } else {
+        this.hideMenuList(); // else hide menu list
+      }
+    });
+  }
+
+  closeMenuByClick(event) {
+    const targetContainer = event.currentTarget;
+    const eventPath = event.path || (event.composedPath && event.composedPath());
+
+    const menuButton = checkTargetClassInPath(eventPath, targetContainer, 'header__menu-button'); // check click on button
+    const menuBody = checkTargetClassInPath(eventPath, targetContainer, 'header__menu'); // check click on memu
+
+    if (!menuButton && !menuBody) { // if missclick, hide menu
+      this.hideMenuList();
+      document.removeEventListener('click', this.closeMenuByMissclick);
+    }
+  }
+
   getHeaderElementSize() {
     const elementHeight = parseInt(document.defaultView.getComputedStyle(this.headerMenuContainer, '').getPropertyValue('height'), 10);
     const elementMargin = parseInt(document.defaultView.getComputedStyle(this.headerMenuContainer, '').getPropertyValue('top'), 10);
 
+    this.headerMenuContainerMargin = elementMargin;
     this.headerMenuContainerSize = elementHeight + elementMargin;
   }
 
-  headerMenuShouldStick() {
-    if (this.headerClassList.contains('_stick')) {
+  stickHeaderLine() {
+    if (this.headerMenuClassList.contains('_stick')) {
       return;
     }
 
-    this.headerClassList.add('_stick');
+    this.headerMenuClassList.add('_stick');
   }
 
-  headerMenuShouldStickOut() {
-    if (!this.headerClassList.contains('_stick')) {
+  unstickHeaderLine() {
+    if (!this.headerMenuClassList.contains('_stick')) {
       return;
     }
 
-    this.headerClassList.remove('_stick');
+    this.headerMenuClassList.remove('_stick');
   }
 
-  headerMenuShouldHide() {
-    if (this.headerClassList.contains('_hidden')) {
+  hideHeaderLine() {
+    if (this.headerMenuClassList.contains('_hidden')) {
       return;
     }
 
-    this.headerClassList.add('_hidden');
-    this.menuShowFlag = false;
+    this.headerMenuClassList.add('_hidden');
+    this.isHeaderLineShow = false;
   }
 
-  headerMenuShouldShow() {
-    if (!this.headerClassList.contains('_hidden')) {
+  showHeaderLine() {
+    if (!this.headerMenuClassList.contains('_hidden')) {
       return;
     }
 
-    this.headerClassList.remove('_hidden');
-    this.menuShowFlag = true;
+    this.headerMenuClassList.remove('_hidden');
+    this.isHeaderLineShow = true;
+  }
+
+  showMenuList() {
+    this.headerClassList.add('_active');
+    this.isMenuShow = true;
+  }
+
+  hideMenuList() {
+    this.headerClassList.remove('_active');
+    this.isMenuShow = false;
   }
 }
