@@ -27,12 +27,14 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.01);
+    display: none;
     animation: hideShadow 0.25s ease;
 }
 
 .header._active .header__wrapper-blackout {
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
+    display: block;
     animation: showShadow 0.25s ease;
 }
 
@@ -40,16 +42,19 @@ body {
     0% {
         z-index: 0;
         background-color: rgba(0, 0, 0, 0.01);
+        display: none;
     }
 
     10% {
         z-index: 10;
         background-color: rgba(0, 0, 0, 0.01);
+        display: block;
     }
 
     100% {
         z-index: 10;
         background-color: rgba(0, 0, 0, 0.7);
+        display: block;
     }
 }
 
@@ -57,16 +62,19 @@ body {
     0% {
         z-index: 10;
         background-color: rgba(0, 0, 0, 0.7);
+        display: block;
     }
     
     90% {
         z-index: 10;
         background-color: rgba(0, 0, 0, 0.01);
+        display: none;
     }
     
     100% {
         z-index: 0;
         background-color: rgba(0, 0, 0, 0.01);
+        display: none;
     }
 }
 
