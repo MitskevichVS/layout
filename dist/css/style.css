@@ -552,6 +552,7 @@ body {
 
 .section__gallery-item img {
     height: 100%;
+    transition: transform 0.25s ease;
 }
 
 .section__gallery-item._square-similar {
@@ -578,6 +579,11 @@ body {
 
 .section__gallery-item._large {
     height: 422px;
+}
+
+.section__gallery-item._rectangle:hover img,
+.section__gallery-item._square:hover img {
+    transform: scale(1.05);
 }
 
 .item__text-wrapper {
