@@ -32,7 +32,7 @@ body {
 }
 
 .header._active .header__wrapper-blackout {
-    z-index: 10;
+    z-index: 6;
     background-color: rgba(0, 0, 0, 0.7);
     display: block;
     animation: showShadow 0.25s ease;
@@ -46,13 +46,13 @@ body {
     }
 
     10% {
-        z-index: 10;
+        z-index: 6;
         background-color: rgba(0, 0, 0, 0.01);
         display: block;
     }
 
     100% {
-        z-index: 10;
+        z-index: 6;
         background-color: rgba(0, 0, 0, 0.7);
         display: block;
     }
@@ -60,13 +60,13 @@ body {
 
 @keyframes hideShadow {
     0% {
-        z-index: 10;
+        z-index: 6;
         background-color: rgba(0, 0, 0, 0.7);
         display: block;
     }
     
     90% {
-        z-index: 10;
+        z-index: 6;
         background-color: rgba(0, 0, 0, 0.01);
         display: none;
     }
@@ -83,7 +83,7 @@ body {
     width: 100%;
     top: 62px;
     left: 0;
-    z-index: 11;
+    z-index: 7;
     background-color: #eff0f2;
 }
 
@@ -105,7 +105,7 @@ body {
     left: 0;
     margin: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 6;
     -webkit-transform: translateY(0);
         -ms-transform: translateY(0);
             transform: translateY(0);
@@ -142,7 +142,7 @@ body {
     justify-content: center;
     background-color: #eff0f2;
     outline: none;
-    z-index: 11;
+    z-index: 7;
 }
 
 .header__menu-button:hover {
