@@ -54,6 +54,32 @@ export default class HeaderController {
     const deltaOfPreviousAndCurrentCoords = this.previousYCoordinate - window.pageYOffset;
     const scrollTopValueWithSafeInterval = window.pageYOffset + scrollTopSafeSpace;
 
+    const scrollBottom = () => {
+      if (window.pageYOffset > this.headerMenuContainerSize) {
+        this.hideHeaderLine();
+      }
+    };
+
+    const scrollTop = () => {
+      if (window.pageYOffset > this.headerMenuContainerSize && this.previousYCoordinate >= scrollTopValueWithSafeInterval) {
+        this.stickHeaderLine();
+        this.showHeaderLine();
+      }
+
+      if (this.isHeaderLineShow && window.pageYOffset <= this.headerMenuContainerMargin) {
+        this.unstickHeaderLine();
+      } else if (!this.isHeaderLineShow && window.pageYOffset <= this.headerMenuContainerSize) {
+        this.unstickHeaderLine();
+        this.showHeaderLine();
+      }
+    };
+
+    if (deltaOfPreviousAndCurrentCoords < 0) {
+      scrollBottom();
+    } else {
+      scrollTop();
+    }
+
     // Check bounce (for Safari)
     if (scrollBounce) {
       this.scrollEventExecutionFlag = false; // set event execution flag to false
@@ -64,22 +90,6 @@ export default class HeaderController {
     if (this.isMenuShow) {
       this.hideMenuList();
       document.removeEventListener('click', this.closeMenuByMissclick);
-    }
-
-    // Checking conditions to fix the menu
-    if (window.pageYOffset >= this.headerMenuContainerMargin) {
-      this.stickHeaderLine();
-    } else {
-      this.unstickHeaderLine();
-    }
-
-    // Checking conditions for dynamic menu display
-    if (this.previousYCoordinate <= scrollTopValueWithSafeInterval
-      && window.pageYOffset > this.headerMenuContainerSize
-      && !(deltaOfPreviousAndCurrentCoords >= 0 && this.isHeaderLineShow)) { // scroll bottom or check scroll more than default menu location
-      this.hideHeaderLine();
-    } else { // other
-      this.showHeaderLine();
     }
 
     this.previousYCoordinate = window.pageYOffset; //  update previous coordinate
