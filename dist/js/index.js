@@ -1,6 +1,7 @@
 import Slider from './slider/slider.js';
 import Gallery from './gallery/gallery.js';
 import HeaderController from './header/headerController.js';
+import QueriesController from './queries/queries.js';
 
 window.onload = () => {
   const slidersArray = Array.from(document.querySelectorAll('.section__content-slider'));
@@ -10,6 +11,7 @@ window.onload = () => {
 
   const serviceGalleryClass = new Gallery(serviceGalleryElement);
   const headerClass = new HeaderController(headerMenuContainer, headerHeading);
+  const queriesClass = new QueriesController();
 
   slidersArray.forEach((slider) => {
     const sliderClass = new Slider(slider);
@@ -23,5 +25,8 @@ window.onload = () => {
   if (window.pageYOffset >= 64) {
     headerClass.handleScrollEvent();
   }
+
+  queriesClass.init();
+
   setTimeout(() => document.querySelector('.hide').classList.remove('hide'), 250);
 };
