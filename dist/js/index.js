@@ -5,20 +5,20 @@ import QueriesController from './queries/queries.js';
 
 window.onload = () => {
   const slidersArray = Array.from(document.querySelectorAll('.section__content-slider'));
-  const serviceGalleryElement = document.querySelectorAll('.section__gallery-list')[1];
+  const [staticGallery, dynamicGallery] = document.querySelectorAll('.section__gallery-list');
   const headerMenuContainer = document.querySelector('.header__content-top');
   const headerHeading = document.querySelector('.header__heading');
 
-  const serviceGalleryClass = new Gallery(serviceGalleryElement);
+  const galleryClass = new Gallery(staticGallery, dynamicGallery);
   const headerClass = new HeaderController(headerMenuContainer, headerHeading);
-  const queriesClass = new QueriesController();
+  const queriesClass = new QueriesController(galleryClass);
 
   slidersArray.forEach((slider) => {
     const sliderClass = new Slider(slider);
     sliderClass.init();
   });
 
-  serviceGalleryClass.init();
+  galleryClass.init();
 
   headerClass.init();
 
