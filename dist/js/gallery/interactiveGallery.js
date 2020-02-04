@@ -1,9 +1,8 @@
 import checkTargetClassInPath from '../utils/pathChecker.js';
 
-export default class Gallery {
-  constructor(staticGallery, dynamicGallery) {
-    this.dynamicGallery = dynamicGallery;
-    this.staticGallery = staticGallery;
+export default class InteractiveGallery {
+  constructor(currentGallery) {
+    this.gallery = currentGallery;
   }
 
   init() {
@@ -12,7 +11,7 @@ export default class Gallery {
   }
 
   addClickEventListener() {
-    this.dynamicGallery.addEventListener('click', (event) => {
+    this.gallery.addEventListener('click', (event) => {
       let targetElParentContainer;
 
       // event path for differents browser:
@@ -47,37 +46,12 @@ export default class Gallery {
   }
 
   addTransitionEventlistener() {
-    this.dynamicGallery.addEventListener('transitionend', (event) => {
+    this.gallery.addEventListener('transitionend', (event) => {
       if (event.propertyName !== 'opacity') {
         return;
       }
 
       event.target.classList.add('_hidden');
-    });
-  }
-
-  fillStaticGallery(dataArray) {
-    // create gallery nodes array:
-    const galleryHTMLcollection = this.staticGallery.children;
-    const galleryArray = Array.from(galleryHTMLcollection);
-
-    dataArray.forEach((item, index) => {
-      // create html image element
-      const image = new Image();
-      // add img props
-      image.src = item.urls.regular;
-      image.alt = item.description;
-
-      image.onload = () => {
-        galleryArray[index].children[0].classList.add('_hidden'); // hide loader
-        // if image portrait orientation: stretch width
-        if (item.width < item.height) {
-          image.classList.add('_portrait');
-        }
-
-        // append image to list
-        galleryArray[index].appendChild(image);
-      };
     });
   }
 }
