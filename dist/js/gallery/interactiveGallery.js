@@ -1,8 +1,8 @@
 import checkTargetClassInPath from '../utils/pathChecker.js';
 
-export default class Gallery {
-  constructor(element) {
-    this.container = element;
+export default class InteractiveGallery {
+  constructor(currentGallery) {
+    this.gallery = currentGallery;
   }
 
   init() {
@@ -11,7 +11,7 @@ export default class Gallery {
   }
 
   addClickEventListener() {
-    this.container.addEventListener('click', (event) => {
+    this.gallery.addEventListener('click', (event) => {
       let targetElParentContainer;
 
       // event path for differents browser:
@@ -46,7 +46,7 @@ export default class Gallery {
   }
 
   addTransitionEventlistener() {
-    this.container.addEventListener('transitionend', (event) => {
+    this.gallery.addEventListener('transitionend', (event) => {
       if (event.propertyName !== 'opacity') {
         return;
       }
